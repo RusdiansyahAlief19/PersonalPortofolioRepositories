@@ -169,11 +169,14 @@ function App() {
                                     Live Demo
                                 </a>
                             )}
-                            {item.github_link && (
-                                <a href={item.github_link} target="_blank" rel="noreferrer" className="flex-1 bg-jcrea-gray hover:bg-white hover:text-black border border-white/20 text-center py-2 rounded-xl text-sm font-bold transition-all duration-300">
-                                    GitHub Repo
-                                </a>
-                            )}
+                            <a
+                                href={item.github_link && item.github_link !== '#' ? item.github_link : 'https://github.com/RusdiansyahAlief19'}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="flex-1 bg-jcrea-gray hover:bg-white hover:text-black border border-white/20 text-center py-2 rounded-xl text-sm font-bold transition-all duration-300"
+                            >
+                                GitHub Repo
+                            </a>
                         </div>
                     </div>
                 </div>

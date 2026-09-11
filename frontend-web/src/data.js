@@ -11,33 +11,33 @@ export const projects = [
     title: 'Website Profesional SAB Tour & Travel',
     description: 'Membangun landing page dan ekosistem digital untuk bisnis tour & travel keluarga dari nol. Berfokus pada antarmuka yang modern dan responsif untuk menarik calon pelanggan.',
     tech_stack: 'PHP (Laravel), Tailwind CSS, Docker (Sail), Figma, Vercel, GitHub',
-    image_path: null,
-    link: '#',
-    github_link: '#'
+    image_path: '/assets/images/projects/sab-tour.png',
+    link: null,
+    github_link: 'https://github.com/RusdiansyahAlief19/SABTOURS'
   },
   {
     title: 'Sistem Deteksi Bahasa Isyarat BISINDO',
     description: 'Mengembangkan model Machine Learning untuk mendeteksi dan menerjemahkan Bahasa Isyarat Indonesia (BISINDO) secara real-time melalui tangkapan kamera.',
     tech_stack: 'Machine Learning, Computer Vision',
-    image_path: null,
+    image_path: '/assets/images/projects/bisindo.png',
     link: null,
-    github_link: '#'
+    github_link: 'https://github.com/RusdiansyahAlief19'
   },
   {
     title: 'Local Retrieval-Augmented Generation (RAG) System',
     description: 'Membangun sistem kecerdasan buatan lokal yang dapat memproses dan menjawab pertanyaan berdasarkan dokumen spesifik dengan arsitektur RAG, menjaga privasi data karena berjalan di local environment.',
     tech_stack: 'LangChain, Ollama',
-    image_path: null,
+    image_path: '/assets/images/projects/local-rag.jpg',
     link: null,
-    github_link: '#'
+    github_link: 'https://github.com/RusdiansyahAlief19/LocalRAG'
   },
   {
     title: 'Aplikasi Study Timer',
     description: 'Mengembangkan aplikasi manajemen waktu belajar mandiri (timer) yang dirancang untuk meningkatkan produktivitas, khususnya saat mempersiapkan ujian seperti IELTS.',
     tech_stack: 'Web Development Tools',
-    image_path: null,
+    image_path: '/assets/images/projects/study-timer.jpg',
     link: null,
-    github_link: '#'
+    github_link: 'https://github.com/RusdiansyahAlief19/smart-study-timer'
   }
 ];
 

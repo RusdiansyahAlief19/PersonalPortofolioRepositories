@@ -1,24 +1,57 @@
 export const skills = [
-  'React JS', 'PHP', 'Laravel', 'Tailwind CSS', 
-  'LangChain', 'Ollama', 'Computer Vision', 'Machine Learning',
-  'STRIDE Threat Modeling', 'Nmap', 'Wireshark', 'Suricata', 
-  'Git', 'GitHub', 'Docker (Sail)', 'Vercel', 'Figma',
-  'Public Speaking (MC)', 'Human Resource Management', 'Event Organizing', 'Leadership'
+  'PHP', 'JavaScript', 'Python', 'Go (Golang)', 'Java', 'HTML5', 'CSS3 / Tailwind CSS',
+  'Laravel', 'React.js', 'Alpine.js', 'Docker', 'Git / GitHub', 'Railway', 'Vercel',
+  'UI/UX Prototyping (Figma, Canva)', 'System Analysis & Design', 'Data Structures & Algorithms',
+  'Computer Vision (OpenCV, MediaPipe)', 'RAG (Retrieval-Augmented Generation)',
+  'STRIDE Threat Modeling', 'Wireshark / Nmap', 'Suricata',
+  'Human Resource Management', 'Project Leadership', 'Public Speaking (MC)', 'Team Collaboration', 'Problem Solving'
 ];
 
 export const projects = [
   {
+    title: 'PhagOS — Virtual SOC Analyst',
+    description: 'Virtual SOC Analyst berbasis RAG untuk menjaga keamanan server jaringan. Menganalisis log Suricata, menghitung skor risiko statistik per host, dan menjelaskan ancaman dalam Bahasa Indonesia melalui chatbot dengan sitasi MITRE ATT&CK.',
+    tech_stack: 'Python, FastAPI, FAISS, BM25, Gemini, Suricata, SQLite, HMAC-SHA256',
+    image_path: 'https://placehold.co/600x400/1a1a1a/ff6b00?text=PhagOS',
+    link: null,
+    github_link: 'https://github.com/RusdiansyahAlief19/PhagOS'
+  },
+  {
+    title: 'RAGudtrucks — Fleet Intelligence Platform',
+    description: 'Platform RAG enterprise untuk Astra UD Trucks (proyek lomba inovasi). Asisten AI untuk informasi teknis truk, kalkulator TCO interaktif, dashboard predictive maintenance FleetSight, dan driver behavior scoring.',
+    tech_stack: 'Python, FastAPI, FAISS, BM25, Gemini 2.5 Flash, LangChain, Scikit-Learn, React.js, Pandas',
+    image_path: 'https://placehold.co/600x400/1a1a1a/ff6b00?text=RAGudtrucks',
+    link: null,
+    github_link: 'https://github.com/RusdiansyahAlief19/RAGudtrucks'
+  },
+  {
+    title: 'Buddle (Buddy Learning) — Smart Study Timer',
+    description: 'Aplikasi timer belajar dan produktivitas dengan teknik Pomodoro dan Flowtime. Dilengkapi rekomendasi chronotype personal agar sesi belajar lebih optimal dan terukur.',
+    tech_stack: 'Laravel, Alpine.js, Tailwind CSS, MySQL, Railway',
+    image_path: '/assets/images/projects/study-timer.jpg',
+    link: null,
+    github_link: 'https://github.com/RusdiansyahAlief19/smart-study-timer'
+  },
+  {
+    title: 'OneTimeURL (OTU)',
+    description: 'Sistem one-time URL yang dikembangkan saat magang di PT Finnet Indonesia. Setiap URL hanya dapat diakses sekali dengan autentikasi JWT token untuk keamanan transfer data sensitif antar pihak.',
+    tech_stack: 'React.js, Node.js, JWT, REST API',
+    image_path: 'https://placehold.co/600x400/1a1a1a/ff6b00?text=OneTimeURL',
+    link: null,
+    github_link: 'https://github.com/RusdiansyahAlief19/OneTimeURL-OTU-'
+  },
+  {
     title: 'Website Profesional SAB Tour & Travel',
-    description: 'Membangun landing page dan ekosistem digital untuk bisnis tour & travel keluarga dari nol. Berfokus pada antarmuka yang modern dan responsif untuk menarik calon pelanggan.',
-    tech_stack: 'PHP (Laravel), Tailwind CSS, Docker (Sail), Figma, Vercel, GitHub',
+    description: 'Membangun landing page modern dan platform web operasional untuk bisnis tour & travel keluarga, termasuk katalog paket perjalanan serta pencatatan keuangan digital.',
+    tech_stack: 'HTML, Tailwind CSS, PHP (Laravel), Docker (Sail), Vercel, Figma',
     image_path: '/assets/images/projects/sab-tour.png',
     link: null,
     github_link: 'https://github.com/RusdiansyahAlief19/SABTOURS'
   },
   {
     title: 'Sistem Deteksi Bahasa Isyarat BISINDO',
-    description: 'Mengembangkan model Machine Learning untuk mendeteksi dan menerjemahkan Bahasa Isyarat Indonesia (BISINDO) secara real-time melalui tangkapan kamera.',
-    tech_stack: 'Machine Learning, Computer Vision',
+    description: 'Mengembangkan prototipe Computer Vision untuk mendeteksi dan menerjemahkan Bahasa Isyarat Indonesia (BISINDO) secara real-time berdasarkan koordinat landmark tangan.',
+    tech_stack: 'Python, OpenCV, MediaPipe, Computer Vision',
     image_path: '/assets/images/projects/bisindo.png',
     link: null,
     github_link: 'https://github.com/RusdiansyahAlief19'
@@ -26,62 +59,68 @@ export const projects = [
   {
     title: 'Local Retrieval-Augmented Generation (RAG) System',
     description: 'Membangun sistem kecerdasan buatan lokal yang dapat memproses dan menjawab pertanyaan berdasarkan dokumen spesifik dengan arsitektur RAG, menjaga privasi data karena berjalan di local environment.',
-    tech_stack: 'LangChain, Ollama',
+    tech_stack: 'LangChain, Ollama, Python, FAISS',
     image_path: '/assets/images/projects/local-rag.jpg',
     link: null,
     github_link: 'https://github.com/RusdiansyahAlief19/LocalRAG'
-  },
-  {
-    title: 'Aplikasi Study Timer',
-    description: 'Mengembangkan aplikasi manajemen waktu belajar mandiri (timer) yang dirancang untuk meningkatkan produktivitas, khususnya saat mempersiapkan ujian seperti IELTS.',
-    tech_stack: 'Web Development Tools',
-    image_path: '/assets/images/projects/study-timer.jpg',
-    link: null,
-    github_link: 'https://github.com/RusdiansyahAlief19/smart-study-timer'
   }
 ];
 
 export const experiences = [
   {
-    period: 'Apr 2026',
+    period: 'Agu 2026 - Des 2026',
+    type: 'Teaching',
+    title: 'Asisten Praktikum Analisis & Perancangan Sistem (APS)',
+    organization: 'Fakultas Ilmu Komputer, Universitas Brawijaya',
+    description: 'Membimbing dan menilai mahasiswa dalam siklus SDLC. Mengajarkan pemodelan data terstruktur (ERD), alur sistem, serta prototyping interaktif dengan Figma, hingga fasilitasi implementasi teknis dari desain ke sistem fungsional.'
+  },
+  {
+    period: '2025',
     type: 'Organization',
     title: 'Ketua Pelaksana (Chairman) RECON',
     organization: 'HMDTIF Universitas Brawijaya',
-    description: 'Memimpin program kunjungan industri (RECON - Recalibrate Company on Site) ke Telkom Infrastruktur, memastikan seluruh kelancaran acara mulai dari perencanaan hingga eksekusi di lapangan.'
+    description: 'Memimpin perencanaan dan eksekusi kunjungan industri ke Telkom Infrastruktur Surabaya. Mengelola anggaran, perizinan, timeline, serta koordinasi stakeholder agar acara berjalan tertib dan tepat sasaran.'
   },
   {
-    period: 'Feb 2025 - Present',
+    period: '2025 - 2026',
     type: 'Organization',
-    title: 'Staff Human Resource (HR) & Pengurus',
+    title: 'Badan Pengurus Internal — Human Resources',
     organization: 'HMDTIF Universitas Brawijaya',
-    description: 'Memimpin dan mengelola alur Open Recruitment Staff Ahli HMDTIF 2026. Mengkoordinasikan acara internal seperti First Gathering staf dan LDK Kompas Gatra. Mempersiapkan Rapat Besar himpunan dan terlibat aktif dalam pengembangan SDM.'
+    description: 'Berperan sebagai Badan Pengurus Internal dengan fokus Human Resource dan kemampuan manajemen yang kuat: memfasilitasi rekrutmen internal, evaluasi kinerja, sesi LGD, program Staff of the Month, serta komunikasi internal untuk menjaga sinergi organisasi.'
   },
   {
-    period: '2024 - Present',
+    period: 'Agu 2024 - Des 2026',
+    type: 'Work',
+    title: 'Full-Stack Developer & IT Support',
+    organization: 'SAB Tour & Travel',
+    description: 'Merancang, mengembangkan, dan memelihara platform web operasional serta portal pemesanan paket wisata end-to-end. Membangun antarmuka responsif, mengintegrasikan arsitektur backend untuk manajemen order, katalog, dan pencatatan keuangan, serta mengelola konfigurasi server, deployment cloud, dan domain.'
+  },
+  {
+    period: 'Agu 2024 - Sekarang',
     type: 'Education',
-    title: 'S1 Teknik Informatika (Semester 4)',
+    title: 'S1 Teknik Informatika',
     organization: 'Universitas Brawijaya (FILKOM)',
-    description: 'Fokus pada pengembangan Full-stack Web, Machine Learning, dan Keamanan Informasi. Sangat aktif berorganisasi di Himpunan Mahasiswa Departemen Teknik Informatika (HMDTIF) dengan berbagai posisi strategis dan kepanitiaan.'
+    description: 'Fokus pada Software Engineering, struktur data & algoritma, analisis & perancangan sistem, serta jaringan komputer. Aktif berorganisasi di HMDTIF dengan peran strategis di bidang Human Resource dan leadership.'
   },
   {
-    period: '2021 - Present',
-    type: 'Freelance',
-    title: 'Master of Ceremony (MC) & Event Committee',
-    organization: 'Berbagai Acara',
-    description: 'Memandu jalannya berbagai acara formal dan non-formal sejak masa SMK hingga kuliah. Terlibat dalam manajemen acara, seperti menyusun proposal sponsorship untuk acara "Lembar Pertama" di Rumah Budaya Ratna (Agustus 2025) dan panitia perpisahan HMDTIF (Januari 2025).'
-  },
-  {
-    period: '2023',
+    period: 'Des 2023 - Apr 2024',
     type: 'Internship',
     title: 'Junior Web Developer',
     organization: 'PT Finnet Indonesia',
-    description: 'Magang sebagai pengembang web junior. Berkontribusi dalam pengembangan antarmuka pengguna, mengimplementasikan komponen menggunakan React JS, dan berkolaborasi dengan tim profesional dalam proyek perusahaan.'
+    description: 'Mengembangkan dan mengintegrasikan antarmuka web interaktif dengan React.js untuk digitalisasi alur kerja internal. Membangun modul backend berbasis Go (Golang), mengonfigurasi lingkungan dengan Docker, serta berkolaborasi dalam tim engineering menggunakan Agile/Scrum dan Git.'
   },
   {
-    period: '2021 - 2024',
+    period: '2021 - Sekarang',
+    type: 'Freelance',
+    title: 'Master of Ceremony (MC) & Event Committee',
+    organization: 'Berbagai Acara',
+    description: 'Memandu berbagai acara formal dan non-formal sejak masa SMK hingga kuliah. Terlibat dalam manajemen acara, penyusunan proposal sponsorship, dan kepanitiaan di berbagai perhelatan penting.'
+  },
+  {
+    period: 'Jul 2021 - Jul 2024',
     type: 'Education',
-    title: 'Rekayasa Perangkat Lunak (Fokus React JS)',
+    title: 'Rekayasa Perangkat Lunak',
     organization: 'SMK Telkom Malang',
-    description: 'Memperdalam fondasi pengembangan web front-end khususnya menggunakan React JS. Aktif dalam berbagai organisasi sekolah dan sering dipercaya sebagai Master of Ceremony (MC) di berbagai acara penting.'
+    description: 'Memperdalam fondasi OOP, web development, dan database. Fokus pada pengembangan front-end khususnya React.js, serta aktif berorganisasi dan dipercaya sebagai Master of Ceremony (MC).'
   }
 ];

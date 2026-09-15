@@ -87,7 +87,7 @@ function App() {
                     Membangun fondasi kuat sejak SMK di bidang Rekayasa Perangkat Lunak, cakupan keahlian saya kini sangat komprehensif: merancang arsitektur web modern, mengembangkan kecerdasan buatan (<strong className="text-white">AI & Machine Learning</strong>), melakukan data preprocessing, hingga mendalami <strong className="text-white">Information Security</strong>.
                 </p>
                 <p>
-                    Di luar penulisan kode, saya adalah komunikator yang antusias. Saya aktif mengelola Sumber Daya Manusia (HR) di HMDTIF UB dan kerap dipercaya menjadi <strong className="text-jcrea-orange">Master of Ceremony (MC)</strong> di berbagai perhelatan penting.
+                    Di luar penulisan kode, saya aktif sebagai <strong className="text-white">Badan Pengurus Internal</strong> di HMDTIF UB dengan fokus <strong className="text-jcrea-orange">Human Resource</strong> dan kemampuan manajemen yang kuat — dari rekrutmen, evaluasi kinerja, hingga menjaga sinergi organisasi. Saya juga kerap dipercaya menjadi <strong className="text-jcrea-orange">Master of Ceremony (MC)</strong> di berbagai perhelatan penting.
                 </p>
             </div>
             
@@ -96,7 +96,7 @@ function App() {
                     <div className="absolute top-0 right-0 w-24 h-24 bg-jcrea-orange/10 rounded-bl-full -mr-4 -mt-4 transition-transform duration-500 group-hover:scale-[2]"></div>
                     <h4 className="text-jcrea-orange font-bold text-xl mb-1 relative z-10">Pendidikan</h4>
                     <p className="text-white font-medium text-lg relative z-10">Universitas Brawijaya</p>
-                    <p className="text-gray-400 text-sm relative z-10">S1 Teknik Informatika (Semester 4)</p>
+                    <p className="text-gray-400 text-sm relative z-10">S1 Teknik Informatika</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-jcrea-gray/60 to-jcrea-dark p-6 rounded-3xl border border-white/10 shadow-lg relative overflow-hidden group hover:border-jcrea-orange/50 transition-colors">
@@ -108,9 +108,9 @@ function App() {
 
                 <div className="bg-gradient-to-br from-jcrea-gray/60 to-jcrea-dark p-6 rounded-3xl border border-white/10 shadow-lg relative overflow-hidden group hover:border-jcrea-orange/50 transition-colors">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-jcrea-orange/10 rounded-bl-full -mr-4 -mt-4 transition-transform duration-500 group-hover:scale-[2]"></div>
-                    <h4 className="text-jcrea-orange font-bold text-xl mb-1 relative z-10">Komunikasi</h4>
-                    <p className="text-white font-medium text-lg relative z-10">Public Speaking</p>
-                    <p className="text-gray-400 text-sm relative z-10">MC, Event Organizing, HR Management</p>
+                    <h4 className="text-jcrea-orange font-bold text-xl mb-1 relative z-10">Leadership</h4>
+                    <p className="text-white font-medium text-lg relative z-10">Human Resource & Management</p>
+                    <p className="text-gray-400 text-sm relative z-10">Badan Pengurus Internal, MC, Project Leadership</p>
                 </div>
             </div>
         </div>
@@ -225,15 +225,15 @@ function App() {
                 <div>
                     <h3 className="text-4xl md:text-5xl font-bold mb-6">Let's <span className="text-jcrea-orange">Connect!</span></h3>
                     <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                        Tertarik untuk bekerja sama, diskusi soal teknologi, atau sekadar menyapa? Jangan ragu untuk menghubungi saya melalui form atau media sosial di bawah ini.
+                        Tertarik untuk bekerja sama, diskusi soal teknologi, atau sekadar menyapa? Hubungi saya langsung melalui email di <a href="mailto:rusdiasputre@gmail.com" className="text-jcrea-orange hover:underline font-medium">rusdiasputre@gmail.com</a>.
                     </p>
                     
                     <div className="space-y-4">
-                        <a href="mailto:email@example.com" className="flex items-center gap-4 text-gray-300 hover:text-jcrea-orange transition-colors group">
+                        <a href="mailto:rusdiasputre@gmail.com" className="flex items-center gap-4 text-gray-300 hover:text-jcrea-orange transition-colors group">
                             <div className="w-12 h-12 bg-black/30 rounded-xl flex items-center justify-center group-hover:bg-jcrea-orange/20 transition-colors">
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                             </div>
-                            <span className="font-medium text-lg">Email Me</span>
+                            <span className="font-medium text-lg">rusdiasputre@gmail.com</span>
                         </a>
                         <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-gray-300 hover:text-jcrea-orange transition-colors group">
                             <div className="w-12 h-12 bg-black/30 rounded-xl flex items-center justify-center group-hover:bg-jcrea-orange/20 transition-colors">
@@ -264,9 +264,9 @@ function App() {
                             <label className="block text-sm font-medium text-gray-400 mb-1">Pesan</label>
                             <textarea rows="4" className="w-full bg-jcrea-gray/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-jcrea-orange transition-colors" placeholder="Tulis pesan Anda..."></textarea>
                         </div>
-                        <button type="button" onClick={() => alert('Ini hanya demo form. Anda bisa menggunakan Formspree/EmailJS untuk mengaktifkannya.')} className="w-full bg-jcrea-orange hover:bg-[#cc5500] text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-[0_0_15px_rgba(255,107,0,0.3)]">
-                            Kirim Pesan
-                        </button>
+                        <a href="mailto:rusdiasputre@gmail.com?subject=Hello%20Alief%20-%20Portfolio%20Contact" className="block w-full bg-jcrea-orange hover:bg-[#cc5500] text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-[0_0_15px_rgba(255,107,0,0.3)] text-center">
+                            Kirim Email
+                        </a>
                     </form>
                 </div>
             </div>

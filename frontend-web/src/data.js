@@ -12,7 +12,7 @@ export const projects = [
     title: 'PhagOS — Virtual SOC Analyst',
     description: 'Virtual SOC Analyst berbasis RAG untuk menjaga keamanan server jaringan. Menganalisis log Suricata, menghitung skor risiko statistik per host, dan menjelaskan ancaman dalam Bahasa Indonesia melalui chatbot dengan sitasi MITRE ATT&CK.',
     tech_stack: 'Python, FastAPI, FAISS, BM25, Gemini, Suricata, SQLite, HMAC-SHA256',
-    image_path: 'https://placehold.co/600x400/1a1a1a/ff6b00?text=PhagOS',
+    image_path: '/assets/images/projects/phagos.png',
     link: null,
     github_link: 'https://github.com/RusdiansyahAlief19/PhagOS'
   },
@@ -20,7 +20,7 @@ export const projects = [
     title: 'RAGudtrucks — Fleet Intelligence Platform',
     description: 'Platform RAG enterprise untuk Astra UD Trucks (proyek lomba inovasi). Asisten AI untuk informasi teknis truk, kalkulator TCO interaktif, dashboard predictive maintenance FleetSight, dan driver behavior scoring.',
     tech_stack: 'Python, FastAPI, FAISS, BM25, Gemini 2.5 Flash, LangChain, Scikit-Learn, React.js, Pandas',
-    image_path: 'https://placehold.co/600x400/1a1a1a/ff6b00?text=RAGudtrucks',
+    image_path: '/assets/images/projects/ragudtrucks.png',
     link: null,
     github_link: 'https://github.com/RusdiansyahAlief19/RAGudtrucks'
   },
@@ -36,7 +36,7 @@ export const projects = [
     title: 'OneTimeURL (OTU)',
     description: 'Sistem one-time URL yang dikembangkan saat magang di PT Finnet Indonesia. Setiap URL hanya dapat diakses sekali dengan autentikasi JWT token untuk keamanan transfer data sensitif antar pihak.',
     tech_stack: 'React.js, Node.js, JWT, REST API',
-    image_path: 'https://placehold.co/600x400/1a1a1a/ff6b00?text=OneTimeURL',
+    image_path: '/assets/images/projects/onetimeurl.png',
     link: null,
     github_link: 'https://github.com/RusdiansyahAlief19/OneTimeURL-OTU-'
   },

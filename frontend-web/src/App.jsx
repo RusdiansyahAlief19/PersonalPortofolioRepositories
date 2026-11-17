@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { skills, projects, experiences } from './data';
+import { skillCategories, projects, experiences, achievements } from './data';
 
 function App() {
   useEffect(() => {
@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       {/* NAVBAR */}
-      <nav style={{ position: 'fixed', top: '1.5rem', left: '50%', transform: 'translateX(-50%)', zIndex: 50, width: '95%', maxWidth: '56rem' }}
+      <nav style={{ position: 'fixed', top: '1.5rem', left: '50%', transform: 'translateX(-50%)', zIndex: 50, width: '95%', maxWidth: '64rem' }}
           className="bg-jcrea-gray/80 backdrop-blur-md rounded-full px-6 py-3 flex items-center justify-between gap-8 border border-white/10 shadow-2xl"
           data-aos="fade-down">
 
@@ -31,6 +31,7 @@ function App() {
 
         <div className="hidden md:flex items-center gap-6 flex-1 justify-end">
             <a href="#projects" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Projects</a>
+            <a href="#achievements" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Achievements</a>
             <a href="#experience" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Experience</a>
             <a href="#contact" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Contact</a>
         </div>
@@ -38,22 +39,22 @@ function App() {
 
       {/* HERO SECTION */}
       <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-32 px-4">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-jcrea-orange/20 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-jcrea-orange/20 rounded-full blur-[130px] -z-10 pointer-events-none"></div>
 
-        <div className="text-center z-10" data-aos="zoom-in" data-aos-duration="1200">
-            <span className="inline-flex items-center gap-2 border border-white/20 bg-jcrea-gray/50 rounded-full px-4 py-1.5 text-sm mb-6 text-gray-300">
-                <span>👋</span> Hi there!
+        <div className="text-center z-10 max-w-4xl mx-auto" data-aos="zoom-in" data-aos-duration="1200">
+            <span className="inline-flex items-center gap-2 border border-jcrea-orange/30 bg-jcrea-orange/10 rounded-full px-4 py-1.5 text-xs md:text-sm mb-6 text-jcrea-orange font-semibold tracking-wide">
+                <span>⚡</span> AI, Machine Learning &amp; Data Engineer
             </span>
-            <h1 className="text-5xl md:text-8xl font-black tracking-tight mb-2">
-                I'm <span className="text-jcrea-orange">Alief</span>,
+            <h1 className="text-4xl md:text-7xl font-black tracking-tight mb-3 text-white">
+                Rusdiansyah <span className="text-jcrea-orange">Alief</span> Prasetya
             </h1>
-            <h2 className="text-4xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-500 mb-10">
-                A Software Engineer
-            </h2>
+            <p className="text-lg md:text-2xl text-gray-300 max-w-2xl mx-auto font-medium mb-8 leading-relaxed">
+                Building enterprise <span className="text-white font-bold">Hybrid RAG systems</span>, deep learning <span className="text-white font-bold">sequential recommenders</span>, and high-throughput data pipelines.
+            </p>
         </div>
 
         <div className="relative z-10" data-aos="fade-up" data-aos-delay="300">
-            <div className="w-64 h-64 md:w-80 md:h-80 bg-jcrea-gray rounded-full border-4 border-jcrea-gray outline outline-2 outline-jcrea-orange/50 overflow-hidden mb-8 shadow-2xl flex items-center justify-center mx-auto relative group">
+            <div className="w-60 h-60 md:w-72 md:h-72 bg-jcrea-gray rounded-full border-4 border-jcrea-gray outline outline-2 outline-jcrea-orange/50 overflow-hidden mb-8 shadow-2xl flex items-center justify-center mx-auto relative group">
                 <div className="absolute inset-0 bg-jcrea-orange/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
                 <img src="/assets/images/profil tengah.jpeg" className="w-full h-full object-cover" alt="Profile" />
             </div>
@@ -63,8 +64,8 @@ function App() {
                     Lihat Proyek Saya
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
-                <a href="/docs/CV_Alief.pdf" target="_blank" rel="noreferrer" className="border border-white/20 hover:border-white/50 text-white px-8 py-3.5 rounded-full font-bold hover:bg-white/5 transition-all duration-300 flex items-center gap-2 backdrop-blur-sm w-full sm:w-auto justify-center">
-                    Download CV
+                <a href="/docs/CV_Rusdiansyah_Alief_Prasetya_AI_ML.pdf" target="_blank" rel="noreferrer" className="border border-white/20 hover:border-white/50 text-white px-8 py-3.5 rounded-full font-bold hover:bg-white/5 transition-all duration-300 flex items-center gap-2 backdrop-blur-sm w-full sm:w-auto justify-center">
+                    Download CV ATS (PDF)
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                 </a>
             </div>
@@ -75,19 +76,19 @@ function App() {
       <section id="about" className="py-24 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-16" data-aos="fade-up">
             <h3 className="text-3xl md:text-5xl font-bold mb-4">About <span className="text-jcrea-orange">Me</span></h3>
-            <p className="text-gray-400">Sedikit cerita tentang perjalanan dan ketertarikan saya.</p>
+            <p className="text-gray-400">Fondasi riset akademik dan rekayasa sistem data cerdas.</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
             <div className="md:col-span-7 bg-jcrea-gray/40 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-white/5 shadow-xl text-gray-300 leading-relaxed text-lg" data-aos="fade-right" data-aos-delay="100">
                 <p className="mb-6">
-                    Halo! Saya <strong className="text-white">Rusdiansyah Alief</strong>, mahasiswa Teknik Informatika di Universitas Brawijaya. Sebagai seorang <strong className="text-jcrea-orange">Software Engineer</strong>, saya memiliki gairah eksplorasi yang luas di berbagai spektrum teknologi, mulai dari rekayasa perangkat lunak hingga pemrosesan data cerdas.
+                    Saya mahasiswa S1 Teknik Informatika di <strong className="text-white">Universitas Brawijaya</strong> yang berfokus pada perancangan arsitektur kecerdasan buatan, pemodelan deep learning, dan rekayasa data.
                 </p>
                 <p className="mb-6">
-                    Membangun fondasi kuat sejak SMK di bidang Rekayasa Perangkat Lunak, cakupan keahlian saya kini sangat komprehensif: merancang arsitektur web modern, mengembangkan kecerdasan buatan (<strong className="text-white">AI & Machine Learning</strong>), melakukan data preprocessing, hingga mendalami <strong className="text-white">Information Security</strong>.
+                    Aktif sebagai <strong className="text-jcrea-orange">Research Intern di Laboratorium Komputasi Cerdas</strong> meneliti model rekomendasi sekuensial (<strong className="text-white">AAAI 2024 BSARec</strong>), berpengalaman mengembangkan <strong className="text-white">Hybrid Search RAG</strong> dan <strong className="text-white">Predictive Maintenance</strong> untuk Astra UD Trucks, serta membangun on-premise vector microservices berbasis <strong className="text-white">Golang dan ChromaDB</strong>.
                 </p>
                 <p>
-                    Di luar penulisan kode, saya aktif sebagai <strong className="text-white">Badan Pengurus Internal</strong> di HMDTIF UB dengan fokus <strong className="text-jcrea-orange">Human Resource</strong> dan kemampuan manajemen yang kuat — dari rekrutmen, evaluasi kinerja, hingga menjaga sinergi organisasi. Saya juga kerap dipercaya menjadi <strong className="text-jcrea-orange">Master of Ceremony (MC)</strong> di berbagai perhelatan penting.
+                    Terbiasa mengelola siklus data end-to-end: dari data preprocessing, benchmarking multi-seed dengan tracking <strong className="text-jcrea-orange">Weights &amp; Biases</strong>, hingga otomatisasi cron ingestion pipeline menggunakan <strong className="text-white">GitHub Actions</strong> dan basis data relasional aman di <strong className="text-white">Supabase PostgreSQL (RLS)</strong>.
                 </p>
             </div>
             
@@ -95,47 +96,60 @@ function App() {
                 <div className="bg-gradient-to-br from-jcrea-gray/60 to-jcrea-dark p-6 rounded-3xl border border-white/10 shadow-lg relative overflow-hidden group hover:border-jcrea-orange/50 transition-colors">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-jcrea-orange/10 rounded-bl-full -mr-4 -mt-4 transition-transform duration-500 group-hover:scale-[2]"></div>
                     <h4 className="text-jcrea-orange font-bold text-xl mb-1 relative z-10">Pendidikan</h4>
-                    <p className="text-white font-medium text-lg relative z-10">Universitas Brawijaya</p>
-                    <p className="text-gray-400 text-sm relative z-10">S1 Teknik Informatika</p>
+                    <p className="text-white font-medium text-lg relative z-10">Universitas Brawijaya (FILKOM)</p>
+                    <p className="text-gray-400 text-sm relative z-10">S1 Teknik Informatika • Fokus AI &amp; Data</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-jcrea-gray/60 to-jcrea-dark p-6 rounded-3xl border border-white/10 shadow-lg relative overflow-hidden group hover:border-jcrea-orange/50 transition-colors">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-jcrea-orange/10 rounded-bl-full -mr-4 -mt-4 transition-transform duration-500 group-hover:scale-[2]"></div>
                     <h4 className="text-jcrea-orange font-bold text-xl mb-1 relative z-10">Fokus Keahlian</h4>
-                    <p className="text-white font-medium text-lg relative z-10">Software Engineering</p>
-                    <p className="text-gray-400 text-sm relative z-10">Web, AI, Security & Data</p>
+                    <p className="text-white font-medium text-lg relative z-10">AI / ML &amp; Data Engineering</p>
+                    <p className="text-gray-400 text-sm relative z-10">Hybrid RAG, Sequential Recommenders, Data Pipelines</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-jcrea-gray/60 to-jcrea-dark p-6 rounded-3xl border border-white/10 shadow-lg relative overflow-hidden group hover:border-jcrea-orange/50 transition-colors">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-jcrea-orange/10 rounded-bl-full -mr-4 -mt-4 transition-transform duration-500 group-hover:scale-[2]"></div>
-                    <h4 className="text-jcrea-orange font-bold text-xl mb-1 relative z-10">Leadership</h4>
-                    <p className="text-white font-medium text-lg relative z-10">Human Resource & Management</p>
-                    <p className="text-gray-400 text-sm relative z-10">Badan Pengurus Internal, MC, Project Leadership</p>
+                    <h4 className="text-jcrea-orange font-bold text-xl mb-1 relative z-10">Riset &amp; Sistem</h4>
+                    <p className="text-white font-medium text-lg relative z-10">Lab Komputasi Cerdas &amp; Industry</p>
+                    <p className="text-gray-400 text-sm relative z-10">AAAI 2024 Audit, Golang Vector Serving, Docker</p>
                 </div>
             </div>
         </div>
       </section>
 
-      {/* SKILLS & TOOLS */}
-      <section id="skills" className="py-24 px-4 max-w-6xl mx-auto bg-jcrea-gray/20">
+      {/* SKILLS & TOOLS (CATEGORIZED) */}
+      <section id="skills" className="py-24 px-4 max-w-6xl mx-auto bg-jcrea-gray/20 rounded-3xl">
         <div className="text-center mb-16" data-aos="fade-up">
-            <h3 className="text-3xl md:text-5xl font-bold mb-4">Skills & <span className="text-jcrea-orange">Tools</span></h3>
-            <p className="text-gray-400">Teknologi dan alat yang sering saya gunakan.</p>
+            <h3 className="text-3xl md:text-5xl font-bold mb-4">Skills &amp; <span className="text-jcrea-orange">Technical Stacks</span></h3>
+            <p className="text-gray-400">Arsitektur keahlian terstruktur dalam Machine Learning, Generative AI, dan Data Engineering.</p>
         </div>
-        <div className="flex flex-wrap justify-center gap-6" data-aos="fade-up" data-aos-delay="100">
-            {skills.map((skill, index) => (
-                <div key={index} className="bg-jcrea-gray/60 backdrop-blur-sm border border-white/10 hover:border-jcrea-orange/50 hover:bg-jcrea-orange/10 px-8 py-4 rounded-2xl flex items-center gap-3 transition-all duration-300 hover:-translate-y-2 cursor-default group shadow-lg">
-                    <span className="font-bold text-gray-300 group-hover:text-white">{skill}</span>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8" data-aos="fade-up" data-aos-delay="100">
+            {skillCategories.map((group, groupIdx) => (
+                <div key={groupIdx} className="bg-jcrea-gray/50 backdrop-blur-sm border border-white/10 hover:border-jcrea-orange/40 rounded-3xl p-8 transition-all duration-300 shadow-xl group hover:-translate-y-1">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
+                        <span className="w-3 h-3 rounded-full bg-jcrea-orange shadow-[0_0_10px_#FF6B00]"></span>
+                        <h4 className="text-xl font-bold text-white group-hover:text-jcrea-orange transition-colors">
+                            {group.category}
+                        </h4>
+                    </div>
+                    <div className="flex flex-wrap gap-2.5">
+                        {group.skills.map((skill, skillIdx) => (
+                            <span key={skillIdx} className="bg-jcrea-dark/80 text-gray-200 border border-white/10 group-hover:border-jcrea-orange/30 px-3.5 py-2 rounded-xl text-sm font-medium hover:bg-jcrea-orange hover:text-white transition-all cursor-default">
+                                {skill}
+                            </span>
+                        ))}
+                    </div>
                 </div>
             ))}
         </div>
       </section>
 
-      {/* PROJECTS */}
+      {/* FEATURED PROJECTS */}
       <section id="projects" className="py-24 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-16" data-aos="fade-up">
             <h3 className="text-3xl md:text-5xl font-bold mb-4">Featured <span className="text-jcrea-orange">Projects</span></h3>
-            <p className="text-gray-400">Beberapa karya terbaik yang pernah saya buat.</p>
+            <p className="text-gray-400">Implementasi sistem kecerdasan buatan, reproduksi riset deep learning, dan arsitektur data produksi.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -143,16 +157,35 @@ function App() {
                 <div key={index} className="bg-jcrea-gray/40 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/5 hover:border-jcrea-orange/50 transition-all duration-500 group shadow-xl flex flex-col"
                     data-aos="fade-up" data-aos-delay={(index + 1) * 100}>
                     <div className="h-56 bg-black overflow-hidden relative">
-                        <img src={item.image_path || 'https://via.placeholder.com/600x400?text=No+Image'}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90" alt={item.title} />
-                        <div className="absolute inset-0 bg-gradient-to-t from-jcrea-dark via-transparent to-transparent opacity-60"></div>
+                        <img 
+                            src={item.image_path || 'https://via.placeholder.com/600x400?text=No+Image'}
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = 'https://via.placeholder.com/600x400/1e1e1e/ff6b00?text=' + encodeURIComponent(item.title);
+                            }}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90" 
+                            alt={item.title} 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-jcrea-dark via-transparent to-transparent opacity-70"></div>
+                        
+                        {item.highlight && (
+                            <div className="absolute top-4 left-4 z-10">
+                                <span className="bg-jcrea-orange/90 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                                    {item.highlight}
+                                </span>
+                            </div>
+                        )}
                     </div>
-                    <div className="p-8 flex-1 flex flex-col">
-                        <h3 className="text-2xl font-extrabold mb-3 text-white group-hover:text-jcrea-orange transition-colors">
+                    
+                    <div className="p-7 flex-1 flex flex-col">
+                        <span className="text-xs font-semibold text-jcrea-orange uppercase tracking-wider mb-1">
+                            {item.category}
+                        </span>
+                        <h3 className="text-xl font-extrabold mb-3 text-white group-hover:text-jcrea-orange transition-colors">
                             {item.title}
                         </h3>
-                        <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-1">
-                            {item.description.length > 120 ? item.description.substring(0, 120) + '...' : item.description}
+                        <p className="text-gray-300 text-sm leading-relaxed mb-5 flex-1">
+                            {item.description}
                         </p>
                         
                         {item.tech_stack && (
@@ -186,11 +219,67 @@ function App() {
         </div>
       </section>
 
+      {/* ACHIEVEMENTS / HONORS */}
+      <section id="achievements" className="py-24 px-4 max-w-6xl mx-auto">
+        <div className="text-center mb-16" data-aos="fade-up">
+            <h3 className="text-3xl md:text-5xl font-bold mb-4">Honors &amp; <span className="text-jcrea-orange">Achievements</span></h3>
+            <p className="text-gray-400">Prestasi dan rekognisi kompetisi inovasi berbasis data tingkat nasional.</p>
+        </div>
+
+        <div className="max-w-4xl mx-auto" data-aos="zoom-in" data-aos-delay="100">
+            {achievements.map((item, idx) => (
+                <div key={idx} className="bg-gradient-to-r from-jcrea-gray/70 via-jcrea-gray/40 to-jcrea-dark p-8 md:p-10 rounded-3xl border border-jcrea-orange/40 shadow-2xl relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-48 h-48 bg-jcrea-orange/15 rounded-full blur-[60px] pointer-events-none group-hover:scale-125 transition-transform duration-700"></div>
+                    
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+                        <div className="space-y-3 flex-1">
+                            <div className="flex flex-wrap items-center gap-3">
+                                <span className="bg-jcrea-orange text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                                    🏆 National Finalist
+                                </span>
+                                <span className="text-gray-400 text-sm font-semibold">Tahun {item.year}</span>
+                                {item.theme && (
+                                    <span className="bg-white/10 text-gray-300 text-xs px-3 py-1 rounded-full">
+                                        {item.theme}
+                                    </span>
+                                )}
+                            </div>
+                            
+                            <h4 className="text-2xl md:text-3xl font-extrabold text-white group-hover:text-jcrea-orange transition-colors">
+                                {item.title}
+                            </h4>
+                            
+                            <p className="text-gray-300 text-base leading-relaxed">
+                                {item.description}
+                            </p>
+                            
+                            <div className="text-xs text-gray-400 font-mono pt-2">
+                                Penyelenggara: <span className="text-gray-200">{item.organizer}</span> • No: <span className="text-gray-300">{item.certificate_no}</span>
+                            </div>
+                        </div>
+
+                        <div className="flex-shrink-0">
+                            <a 
+                                href={item.certificate_link || '/docs/finalisLombaBussinesPlanUB.pdf'} 
+                                target="_blank" 
+                                rel="noreferrer" 
+                                className="inline-flex items-center gap-2 bg-jcrea-orange hover:bg-[#cc5500] text-white px-6 py-3.5 rounded-2xl font-bold transition-all shadow-[0_0_20px_rgba(255,107,0,0.3)] hover:scale-105"
+                            >
+                                <span>Lihat Sertifikat PDF</span>
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+      </section>
+
       {/* EXPERIENCE & EDUCATION */}
       <section id="experience" className="py-24 px-4 max-w-4xl mx-auto bg-jcrea-gray/20 rounded-3xl">
         <div className="text-center mb-16" data-aos="fade-up">
-            <h3 className="text-3xl md:text-5xl font-bold mb-4">Experience & <span className="text-jcrea-orange">Education</span></h3>
-            <p className="text-gray-400">Jejak perjalanan karir dan pendidikan saya.</p>
+            <h3 className="text-3xl md:text-5xl font-bold mb-4">Experience &amp; <span className="text-jcrea-orange">Education</span></h3>
+            <p className="text-gray-400">Jejak perjalanan riset akademik, rekayasa industri, dan pendidikan formal.</p>
         </div>
 
         <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-jcrea-orange/50 before:to-transparent">
@@ -224,8 +313,8 @@ function App() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 relative z-10">
                 <div>
                     <h3 className="text-4xl md:text-5xl font-bold mb-6">Let's <span className="text-jcrea-orange">Connect!</span></h3>
-                    <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                        Tertarik untuk bekerja sama, diskusi soal teknologi, atau sekadar menyapa? Hubungi saya langsung melalui email di <a href="mailto:rusdiasputre@gmail.com" className="text-jcrea-orange hover:underline font-medium">rusdiasputre@gmail.com</a>.
+                    <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+                        Terbuka untuk peluang magang di bidang <span className="text-white font-semibold">AI / Machine Learning &amp; Data Engineering</span>, diskusi riset model sekuensial &amp; RAG, maupun kolaborasi pengembangan sistem.
                     </p>
                     
                     <div className="space-y-4">
@@ -264,7 +353,7 @@ function App() {
                             <label className="block text-sm font-medium text-gray-400 mb-1">Pesan</label>
                             <textarea rows="4" className="w-full bg-jcrea-gray/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-jcrea-orange transition-colors" placeholder="Tulis pesan Anda..."></textarea>
                         </div>
-                        <a href="mailto:rusdiasputre@gmail.com?subject=Hello%20Alief%20-%20Portfolio%20Contact" className="block w-full bg-jcrea-orange hover:bg-[#cc5500] text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-[0_0_15px_rgba(255,107,0,0.3)] text-center">
+                        <a href="mailto:rusdiasputre@gmail.com?subject=Hello%20Alief%20-%20AI%20Engineering%20Opportunities" className="block w-full bg-jcrea-orange hover:bg-[#cc5500] text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-[0_0_15px_rgba(255,107,0,0.3)] text-center">
                             Kirim Email
                         </a>
                     </form>
@@ -275,7 +364,7 @@ function App() {
 
       {/* FOOTER */}
       <footer className="py-8 text-center text-gray-500 text-sm border-t border-white/5 mt-12">
-        <p>&copy; {new Date().getFullYear()} Rusdiansyah Alief. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Rusdiansyah Alief Prasetya. All rights reserved.</p>
       </footer>
     </>
   );

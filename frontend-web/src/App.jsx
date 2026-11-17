@@ -42,9 +42,10 @@ function App() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-jcrea-orange/20 rounded-full blur-[130px] -z-10 pointer-events-none"></div>
 
         <div className="text-center z-10 max-w-4xl mx-auto" data-aos="zoom-in" data-aos-duration="1200">
-            <span className="inline-flex items-center gap-2 border border-jcrea-orange/30 bg-jcrea-orange/10 rounded-full px-4 py-1.5 text-xs md:text-sm mb-6 text-jcrea-orange font-semibold tracking-wide">
-                <span>⚡</span> AI, Machine Learning &amp; Data Engineer
-            </span>
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md text-xs md:text-sm text-gray-300 font-medium tracking-wide mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-jcrea-orange"></span>
+                <span>AI, Machine Learning &amp; Data Engineer</span>
+            </div>
             <h1 className="text-4xl md:text-7xl font-black tracking-tight mb-3 text-white">
                 Rusdiansyah <span className="text-jcrea-orange">Alief</span> Prasetya
             </h1>

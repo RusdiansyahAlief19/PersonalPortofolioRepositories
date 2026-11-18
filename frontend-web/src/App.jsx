@@ -38,101 +38,36 @@ function App() {
       </nav>
 
       {/* HERO SECTION */}
-      <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-4 overflow-hidden">
-        {/* Arc Ambient Dot Grid & Lighting */}
-        <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
-          <div 
-            className="absolute inset-0 opacity-[0.16]" 
-            style={{
-              backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.45) 1px, transparent 1px)',
-              backgroundSize: '28px 28px',
-              maskImage: 'radial-gradient(ellipse 70% 60% at 50% 25%, #000 40%, transparent 85%)',
-              WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 25%, #000 40%, transparent 85%)'
-            }}
-          />
-          <div 
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[420px] opacity-25 blur-[100px]"
-            style={{
-              background: 'radial-gradient(circle at 50% 0%, #ff6b00 0%, #3b82f6 35%, transparent 70%)'
-            }}
-          />
-        </div>
+      <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-32 px-4">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-jcrea-orange/20 rounded-full blur-[130px] -z-10 pointer-events-none"></div>
 
-        {/* Hero Content (Arc UI Spec) */}
-        <div className="text-center z-10 max-w-4xl mx-auto" data-aos="zoom-in" data-aos-duration="1000">
-            {/* Arc Announcement / Top Tag */}
-            <a 
-              href="#about"
-              className="group inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-white/25 transition-all duration-300 text-xs text-zinc-300 shadow-sm backdrop-blur-md mb-8"
-            >
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest border-r border-white/10 pr-2.5">
-                Open for Internship
-              </span>
-              <span className="font-medium text-zinc-200 group-hover:text-white transition-colors">
-                AI, Machine Learning &amp; Data Engineer
-              </span>
-              <svg className="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-300 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 max-w-4xl leading-[1.1]">
-              Rusdiansyah <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500">Alief</span> Prasetya
+        <div className="text-center z-10 max-w-4xl mx-auto" data-aos="zoom-in" data-aos-duration="1200">
+            <span className="inline-block text-xs md:text-sm font-mono text-gray-300 tracking-wider mb-6">
+                [ AI, Machine Learning &amp; Data Engineer ]
+            </span>
+            <h1 className="text-4xl md:text-7xl font-black tracking-tight mb-3 text-white">
+                Rusdiansyah <span className="text-jcrea-orange">Alief</span> Prasetya
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto font-normal mb-10 leading-relaxed">
-              Building enterprise <span className="text-zinc-200 font-semibold">Hybrid RAG systems</span>, deep learning <span className="text-zinc-200 font-semibold">sequential recommenders</span>, and high-throughput data pipelines at Universitas Brawijaya.
+            <p className="text-lg md:text-2xl text-gray-300 max-w-2xl mx-auto font-medium mb-8 leading-relaxed">
+                Building enterprise <span className="text-white font-bold">Hybrid RAG systems</span>, deep learning <span className="text-white font-bold">sequential recommenders</span>, and high-throughput data pipelines.
             </p>
-
-            {/* Arc Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-14">
-              <a 
-                href="#projects" 
-                className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-white text-zinc-950 font-semibold text-sm hover:bg-zinc-200 transition-all duration-200 shadow-[0_0_25px_rgba(255,255,255,0.12)] hover:scale-[1.02] w-full sm:w-auto"
-              >
-                <span>Explore Projects</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-              </a>
-              <a 
-                href="/docs/CV_Rusdiansyah_Alief_Prasetya_AI_ML.pdf" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-zinc-200 hover:text-white font-medium text-sm transition-all duration-200 backdrop-blur-md w-full sm:w-auto"
-              >
-                <span>Download CV ATS</span>
-                <svg className="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-              </a>
-            </div>
         </div>
 
-        {/* Arc Showcase Profile Card */}
-        <div className="relative max-w-sm w-full mx-auto" data-aos="fade-up" data-aos-delay="200">
-            <div className="relative rounded-3xl p-2.5 bg-zinc-900/60 border border-white/10 shadow-2xl backdrop-blur-xl group hover:border-white/20 transition-all duration-500">
-                <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden bg-zinc-950">
-                    <img 
-                        src="/assets/images/profil tengah.jpeg" 
-                        className="w-full h-full object-cover grayscale-[15%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
-                        alt="Rusdiansyah Alief Prasetya" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-transparent"></div>
-                    
-                    {/* Top Tag */}
-                    <div className="absolute top-3 left-3">
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 border border-white/15 text-[11px] font-mono text-zinc-300 backdrop-blur-md">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                            Research Intern @ Lab KC
-                        </span>
-                    </div>
+        <div className="relative z-10" data-aos="fade-up" data-aos-delay="300">
+            <div className="w-60 h-60 md:w-72 md:h-72 bg-jcrea-gray rounded-full border-4 border-jcrea-gray outline outline-2 outline-jcrea-orange/50 overflow-hidden mb-8 shadow-2xl flex items-center justify-center mx-auto relative group">
+                <div className="absolute inset-0 bg-jcrea-orange/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                <img src="/assets/images/profil tengah.jpeg" className="w-full h-full object-cover" alt="Profile" />
+            </div>
 
-                    {/* Bottom Tag */}
-                    <div className="absolute bottom-3 left-3 right-3 text-left">
-                        <p className="text-white font-bold text-sm">Rusdiansyah Alief Prasetya</p>
-                        <p className="text-zinc-400 text-xs font-mono">Sequential Recs &bull; Hybrid RAG &bull; Data Pipelines</p>
-                    </div>
-                </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-max mx-auto">
+                <a href="#projects" className="bg-jcrea-orange text-white px-8 py-3.5 rounded-full font-bold hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(255,107,0,0.4)] flex items-center gap-2 w-full sm:w-auto justify-center">
+                    Lihat Proyek Saya
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+                <a href="/docs/CV_Rusdiansyah_Alief_Prasetya_AI_ML.pdf" target="_blank" rel="noreferrer" className="border border-white/20 hover:border-white/50 text-white px-8 py-3.5 rounded-full font-bold hover:bg-white/5 transition-all duration-300 flex items-center gap-2 backdrop-blur-sm w-full sm:w-auto justify-center">
+                    Download CV ATS (PDF)
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                </a>
             </div>
         </div>
       </section>

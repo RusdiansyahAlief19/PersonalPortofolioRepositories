@@ -4,9 +4,15 @@ import 'aos/dist/aos.css';
 import { skillCategories, projects, experiences, achievements } from './data';
 import { useSmoothScroll } from './motion/useSmoothScroll';
 import { useHeroNameReveal } from './motion/useHeroNameReveal';
+import { useFinePointer } from './motion/useFinePointer';
+import Magnet from './components/Magnet';
+
+// Subtle pull for the hero CTAs; desktop pointers only.
+const ctaMagnet = { padding: 60, magnetStrength: 6, maxOffset: 10, wrapperClassName: 'w-full sm:w-auto' };
 
 function App() {
   const heroNameRef = useRef(null);
+  const finePointer = useFinePointer();
 
   useSmoothScroll();
   useHeroNameReveal(heroNameRef);
@@ -67,14 +73,18 @@ function App() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-max mx-auto">
+                <Magnet {...ctaMagnet} disabled={!finePointer}>
                 <a href="#projects" className="bg-jcrea-orange text-white px-8 py-3.5 rounded-full font-bold hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(255,107,0,0.4)] flex items-center gap-2 w-full sm:w-auto justify-center">
                     Lihat Proyek Saya
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
+                </Magnet>
+                <Magnet {...ctaMagnet} disabled={!finePointer}>
                 <a href="/docs/CV_Rusdiansyah_Alief_Prasetya_AI_ML.pdf" target="_blank" rel="noreferrer" className="border border-white/20 hover:border-white/50 text-white px-8 py-3.5 rounded-full font-bold hover:bg-white/5 transition-all duration-300 flex items-center gap-2 backdrop-blur-sm w-full sm:w-auto justify-center">
                     Download CV ATS (PDF)
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                 </a>
+                </Magnet>
             </div>
         </div>
       </section>

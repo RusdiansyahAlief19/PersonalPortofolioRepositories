@@ -46,6 +46,7 @@ export const aiFocus = [
   },
   {
     title: 'NLP & Recommender Research',
+    visual: 'log',
     text: 'Reproduced the BSARec paper (AAAI 2024) at the Intelligent System Laboratory, with a multi-seed audit, HR@K and NDCG@K evaluation, and ablation studies.',
     links: [{ label: 'BSARec project', href: '#project-bsarec' }]
   },

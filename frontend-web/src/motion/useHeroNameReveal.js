@@ -15,7 +15,7 @@ export function useHeroNameReveal(ref) {
         yPercent: 60,
         opacity: 0,
         duration: 0.8,
-        delay: 0.3,
+        delay: 0.6,
         stagger: 0.08,
         ease: 'power3.out',
         onComplete: () => split.revert(),

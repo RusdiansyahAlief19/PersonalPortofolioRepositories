@@ -1,11 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { skillCategories, projects, experiences, achievements } from './data';
 import { useSmoothScroll } from './motion/useSmoothScroll';
+import { useHeroNameReveal } from './motion/useHeroNameReveal';
 
 function App() {
+  const heroNameRef = useRef(null);
+
   useSmoothScroll();
+  useHeroNameReveal(heroNameRef);
 
   useEffect(() => {
     AOS.init({
@@ -48,7 +52,7 @@ function App() {
             <span className="inline-block text-xs md:text-sm font-mono text-gray-300 tracking-wider mb-6">
                 [ AI, Machine Learning &amp; Data Engineer ]
             </span>
-            <h1 className="text-4xl md:text-7xl font-black tracking-tight mb-3 text-white">
+            <h1 ref={heroNameRef} className="text-4xl md:text-7xl font-black tracking-tight mb-3 text-white">
                 Rusdiansyah <span className="text-jcrea-orange">Alief</span> Prasetya
             </h1>
             <p className="text-lg md:text-2xl text-gray-300 max-w-2xl mx-auto font-medium mb-8 leading-relaxed">

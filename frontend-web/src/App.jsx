@@ -7,6 +7,8 @@ import { useHeroNameReveal } from './motion/useHeroNameReveal';
 import { useFinePointer } from './motion/useFinePointer';
 import Magnet from './components/Magnet';
 import MobileMenu from './components/MobileMenu';
+import { useActiveSection } from './motion/useActiveSection';
+import { useNavPill } from './motion/useNavPill';
 
 // Section links, shared by the desktop navbar and the mobile menu.
 const navLinks = [
@@ -56,10 +58,28 @@ const ctaMagnet = { padding: 60, magnetStrength: 6, maxOffset: 10, wrapperClassN
 
 function App() {
   const heroNameRef = useRef(null);
+  const navRef = useRef(null);
+  const navPillRef = useRef(null);
   const finePointer = useFinePointer();
 
   useSmoothScroll();
   useHeroNameReveal(heroNameRef);
+  const activeSection = useActiveSection(
+    navLinks.map((link) => link.href.slice(1)),
+    { 'ai-focus': 'home' }
+  );
+  useNavPill(navRef, navPillRef, activeSection);
+
+  // Desktop navbar link: white when its section is in view, grey otherwise.
+  const deskLink = ({ href, label }) => {
+    const active = href === `#${activeSection}`;
+    return (
+      <a key={href} href={href} aria-current={active ? 'true' : undefined}
+        className={`font-medium text-sm transition-colors ${active ? 'text-white' : 'text-gray-400 hover:text-white'}`}>
+        {label}
+      </a>
+    );
+  };
 
   useEffect(() => {
     AOS.init({
@@ -72,14 +92,15 @@ function App() {
   return (
     <>
       {/* NAVBAR */}
-      <nav style={{ position: 'fixed', top: '1.5rem', left: '50%', transform: 'translateX(-50%)', zIndex: 50, width: '95%', maxWidth: '64rem' }}
+      <nav ref={navRef} style={{ position: 'fixed', top: '1.5rem', left: '50%', transform: 'translateX(-50%)', zIndex: 50, width: '95%', maxWidth: '64rem' }}
           className="bg-jcrea-gray/80 backdrop-blur-md rounded-full px-6 py-3 flex items-center justify-between gap-8 border border-white/10 shadow-2xl"
           data-aos="fade-down">
 
+        <span ref={navPillRef} aria-hidden="true"
+            className="hidden md:block absolute top-0 left-0 -z-10 bg-jcrea-orange rounded-full shadow-[0_0_15px_rgba(255,107,0,0.4)] pointer-events-none opacity-0"></span>
+
         <div className="hidden md:flex items-center gap-6 flex-1">
-            <a href="#home" className="bg-jcrea-orange text-white px-5 py-2 rounded-full font-semibold text-sm shadow-[0_0_15px_rgba(255,107,0,0.4)]">Home</a>
-            <a href="#about" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">About</a>
-            <a href="#skills" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Skills</a>
+            {navLinks.slice(0, 3).map(deskLink)}
         </div>
 
         <div className="font-black text-2xl tracking-tighter text-white flex-shrink-0">
@@ -87,13 +108,10 @@ function App() {
         </div>
 
         <div className="hidden md:flex items-center gap-6 flex-1 justify-end">
-            <a href="#projects" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Projects</a>
-            <a href="#achievements" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Activities</a>
-            <a href="#experience" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Experience</a>
-            <a href="#contact" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Contact</a>
+            {navLinks.slice(3).map(deskLink)}
         </div>
 
-        <MobileMenu links={navLinks} />
+        <MobileMenu links={navLinks} activeId={activeSection} />
       </nav>
 
       {/* HERO SECTION */}

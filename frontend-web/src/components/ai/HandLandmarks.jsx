@@ -43,8 +43,10 @@ export default function HandLandmarks() {
         countRef.current.textContent = '0';
 
         gsap.timeline({ delay: 0.2, scrollTrigger: { trigger: root, start: 'top 85%', once: true } })
+          // The label stays hidden until the run starts (no stray "0" before it).
+          .from(countRef.current.parentElement, { opacity: 0, duration: 0.2 }, 0)
           // Landmarks appear in MediaPipe index order, the counter follows them.
-          .from(dots, { attr: { r: 0 }, duration: 0.2, stagger, ease: 'back.out(2)' })
+          .from(dots, { attr: { r: 0 }, duration: 0.2, stagger, ease: 'back.out(2)' }, 0)
           .to(counter, {
             n: TOTAL,
             duration: stagger * (TOTAL - 1) + 0.2,

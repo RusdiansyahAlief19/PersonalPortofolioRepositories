@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { gsap, useGSAP } from './motion/gsap';
+import { gsap, ScrollTrigger, useGSAP } from './motion/gsap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { aiFocus, skillCategories, projects, experiences, education, achievements, activities } from './data';
@@ -119,6 +119,20 @@ function App() {
       once: true,
       offset: 50,
     });
+
+    // ScrollTrigger measures positions while AOS still holds its start offsets
+    // (e.g. fade-up = 100px lower), so triggers inside AOS cards would fire late.
+    // Re-measure once an AOS animation has finished (debounced; no element is animated).
+    let timer = 0;
+    const onAosIn = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => ScrollTrigger.refresh(), 1100);
+    };
+    document.addEventListener('aos:in', onAosIn);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('aos:in', onAosIn);
+    };
   }, []);
 
   return (

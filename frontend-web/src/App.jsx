@@ -2,8 +2,11 @@ import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { skillCategories, projects, experiences, achievements } from './data';
+import { useSmoothScroll } from './motion/useSmoothScroll';
 
 function App() {
+  useSmoothScroll();
+
   useEffect(() => {
     AOS.init({
       duration: 1000,

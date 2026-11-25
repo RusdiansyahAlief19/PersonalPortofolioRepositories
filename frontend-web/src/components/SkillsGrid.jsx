@@ -25,8 +25,9 @@ const showProject = (event, id) => {
 
 const chipClass = 'bg-jcrea-dark/80 text-gray-200 border border-white/10 group-hover:border-jcrea-orange/30 px-3.5 py-2 rounded-xl text-sm font-medium hover:bg-jcrea-orange hover:text-white transition-all';
 
-// Skills grid. Chips that appear in at least one project are buttons: selecting one
-// lists the projects that use it, each linking to its card.
+// Skills grid. Chips that appear in at least one project are buttons, marked by a thin
+// dotted orange underline: selecting one lists the projects that use it, each linking
+// to its card. Other chips stay plain.
 export default function SkillsGrid() {
   const [selected, setSelected] = useState(null);
 
@@ -48,7 +49,7 @@ export default function SkillsGrid() {
                 usage[skill].length ? (
                   <button key={skill} type="button" aria-pressed={skill === selected}
                     onClick={() => setSelected(skill === selected ? null : skill)}
-                    className={`${chipClass} text-left cursor-pointer ${skill === selected ? '!bg-jcrea-orange !text-white !border-jcrea-orange' : ''}`}>
+                    className={`${chipClass} text-left cursor-pointer underline decoration-dotted underline-offset-4 ${skill === selected ? '!bg-jcrea-orange !text-white !border-jcrea-orange decoration-white/60' : 'decoration-jcrea-orange/70'}`}>
                     {skill}
                   </button>
                 ) : (

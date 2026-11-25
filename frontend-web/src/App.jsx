@@ -10,9 +10,10 @@ import Magnet from './components/Magnet';
 import MobileMenu from './components/MobileMenu';
 import ScrollProgress from './components/ScrollProgress';
 import RagDiagram from './components/ai/RagDiagram';
+import HandLandmarks from './components/ai/HandLandmarks';
 
 // Small explanatory visual shown at the top of an AI Focus card (key = aiFocus[].visual).
-const aiVisuals = { rag: RagDiagram };
+const aiVisuals = { rag: RagDiagram, hand: HandLandmarks };
 import { useActiveSection } from './motion/useActiveSection';
 import { useNavPill } from './motion/useNavPill';
 

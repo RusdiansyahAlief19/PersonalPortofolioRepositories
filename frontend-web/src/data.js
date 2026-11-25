@@ -51,6 +51,7 @@ export const aiFocus = [
   },
   {
     title: 'Computer Vision',
+    visual: 'hand',
     text: 'BISINDO sign language detection with MediaPipe, based on 21 hand landmarks per frame.',
     links: [{ label: 'BISINDO project', href: '#project-bisindo' }]
   }

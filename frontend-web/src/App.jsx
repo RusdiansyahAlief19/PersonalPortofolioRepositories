@@ -213,7 +213,7 @@ function App() {
                     {aiVisuals[item.visual] && (() => {
                         const Visual = aiVisuals[item.visual];
                         return (
-                            <div className="h-28 md:h-36 lg:h-28 mb-5 rounded-2xl bg-black/20 border border-white/5 flex items-center justify-center px-3">
+                            <div className="h-28 md:h-36 lg:h-28 mb-5 rounded-2xl bg-black/20 border border-white/5 flex items-center justify-center px-3 md:px-2 lg:px-3">
                                 <Visual />
                             </div>
                         );

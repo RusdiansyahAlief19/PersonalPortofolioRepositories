@@ -12,6 +12,7 @@ const NODE_H = 20;
 const layouts = {
   horizontal: {
     viewBox: '0 0 290 96',
+    fontSize: 10.5,
     nodes: {
       query: { cx: 28, cy: 48, w: 50 },
       bm25: { cx: 112, cy: 20, w: 46 },
@@ -27,7 +28,9 @@ const layouts = {
     },
   },
   vertical: {
-    viewBox: '0 0 176 128',
+    // Cropped to the nodes (x 23-155) so the md card (~146px) renders labels near full size.
+    viewBox: '18 0 142 128',
+    fontSize: 11.5,
     nodes: {
       query: { cx: 88, cy: 12, w: 50 },
       bm25: { cx: 46, cy: 48, w: 46 },
@@ -62,7 +65,7 @@ const EDGES = [
 const LAST_STEP = 6;
 
 function Diagram({ layout, className }) {
-  const { viewBox, nodes, edge } = layouts[layout];
+  const { viewBox, fontSize, nodes, edge } = layouts[layout];
   return (
     <svg viewBox={viewBox} className={`font-mono ${className}`} aria-hidden="true" data-layout={layout}>
       {EDGES.map((e) => (
@@ -75,7 +78,7 @@ function Diagram({ layout, className }) {
           <g key={n.id} data-step={n.step}>
             <rect x={cx - w / 2} y={cy - NODE_H / 2} width={w} height={NODE_H} rx={NODE_H / 2}
               fill="#161616" stroke={n.accent ? '#FF6B00' : 'rgba(255,255,255,0.18)'} />
-            <text x={cx} y={cy} textAnchor="middle" dominantBaseline="central" fontSize="10.5"
+            <text x={cx} y={cy} textAnchor="middle" dominantBaseline="central" fontSize={fontSize}
               fill={n.accent ? '#FF6B00' : n.strong ? '#ffffff' : '#d1d5db'}>
               {n.label}
             </text>
@@ -124,7 +127,7 @@ export default function RagDiagram() {
       className="w-full flex items-center justify-center"
     >
       <Diagram layout="horizontal" className="w-full max-w-[290px] md:hidden lg:block" />
-      <Diagram layout="vertical" className="hidden md:block lg:hidden w-[176px] max-w-full" />
+      <Diagram layout="vertical" className="hidden md:block lg:hidden w-full max-w-[160px]" />
     </div>
   );
 }

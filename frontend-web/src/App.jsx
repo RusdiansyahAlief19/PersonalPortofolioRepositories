@@ -76,7 +76,7 @@ function App() {
 
         <div className="hidden md:flex items-center gap-6 flex-1 justify-end">
             <a href="#projects" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Projects</a>
-            <a href="#achievements" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Achievements</a>
+            <a href="#achievements" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Activities</a>
             <a href="#experience" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Experience</a>
             <a href="#contact" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Contact</a>
         </div>

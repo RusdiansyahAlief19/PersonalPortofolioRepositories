@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { skillCategories, projects, experiences, education, achievements, activities } from './data';
-import { useSmoothScroll } from './motion/useSmoothScroll';
+import { aiFocus, skillCategories, projects, experiences, education, achievements, activities } from './data';
+import { useSmoothScroll, scrollToElement } from './motion/useSmoothScroll';
 import { useHeroNameReveal } from './motion/useHeroNameReveal';
 import { useFinePointer } from './motion/useFinePointer';
 import Magnet from './components/Magnet';
@@ -121,6 +121,36 @@ function App() {
         </div>
       </section>
 
+      {/* AI FOCUS */}
+      <section id="ai-focus" className="py-12 px-4 max-w-6xl mx-auto">
+        <p className="text-xs md:text-sm text-gray-400 text-center mb-6" data-aos="fade-up">AI Focus</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {aiFocus.map((item, idx) => (
+                <div key={idx} className="bg-jcrea-gray/40 backdrop-blur-sm rounded-3xl p-6 md:p-8 border border-white/5 hover:border-jcrea-orange/50 transition-colors shadow-xl flex flex-col"
+                    data-aos="fade-up" data-aos-delay={(idx + 1) * 100}>
+                    <h4 className="text-jcrea-orange font-bold text-xl mb-2">{item.title}</h4>
+                    <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-1">{item.text}</p>
+                    <div className="flex flex-wrap gap-x-4 gap-y-1">
+                        {item.links.map((link) => (
+                            <a key={link.href} href={link.href}
+                                onClick={(e) => {
+                                    const target = document.querySelector(link.href);
+                                    if (!target) return;
+                                    // Handle it here (not via Lenis anchors) so the card clears the fixed navbar.
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    scrollToElement(target);
+                                }}
+                                className="text-sm font-semibold text-white underline decoration-white/20 underline-offset-4 hover:text-jcrea-orange hover:decoration-jcrea-orange transition-colors">
+                                {link.label}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+      </section>
+
       {/* ABOUT ME */}
       <section id="about" className="py-24 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-16" data-aos="fade-up">
@@ -200,7 +230,7 @@ function App() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.length > 0 ? projects.map((item, index) => (
-                <div key={index} className="bg-jcrea-gray/40 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/5 hover:border-jcrea-orange/50 transition-all duration-500 group shadow-xl flex flex-col"
+                <div key={index} id={item.id} className="scroll-mt-28 bg-jcrea-gray/40 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/5 hover:border-jcrea-orange/50 transition-all duration-500 group shadow-xl flex flex-col"
                     data-aos="fade-up" data-aos-delay={(index + 1) * 100}>
                     <div className="h-56 bg-black overflow-hidden relative">
                         <img 

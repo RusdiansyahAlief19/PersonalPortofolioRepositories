@@ -33,8 +33,31 @@ export const skills = [
   'React.js', 'Tailwind CSS', 'GitHub Actions CI/CD', 'Git', 'Linux'
 ];
 
+// "AI Focus" strip right after the hero. Facts taken from the CV project/experience bullets.
+export const aiFocus = [
+  {
+    title: 'RAG Systems',
+    text: 'Hybrid RAG (FAISS + BM25 + RRF) for the Astra UD Trucks fleet intelligence platform, and a fully local, on-premise RAG with Ollama and ChromaDB.',
+    links: [
+      { label: 'Astra UD Trucks project', href: '#project-astra-ud-trucks' },
+      { label: 'Local RAG project', href: '#project-local-rag' }
+    ]
+  },
+  {
+    title: 'NLP & Recommender Research',
+    text: 'Reproduced the BSARec paper (AAAI 2024) at the Intelligent System Laboratory, with a multi-seed audit, HR@K and NDCG@K evaluation, and ablation studies.',
+    links: [{ label: 'BSARec project', href: '#project-bsarec' }]
+  },
+  {
+    title: 'Computer Vision',
+    text: 'BISINDO sign language detection with MediaPipe, based on 21 hand landmarks per frame.',
+    links: [{ label: 'BISINDO project', href: '#project-bisindo' }]
+  }
+];
+
 export const projects = [
   {
+    id: 'project-astra-ud-trucks',
     title: 'Astra UD Trucks – Fleet Intelligence Platform & Hybrid RAG System',
     category: 'Hybrid RAG & Predictive Maintenance',
     description: 'Built a Hybrid Retrieval-Augmented Generation (RAG) system that combines semantic vector search (FAISS) and keyword search (BM25) with Reciprocal Rank Fusion (RRF) to produce grounded answers from documents. Also implemented predictive maintenance for brake, tire, and battery wear (Scikit-Learn) and driver behavior scoring using Z-score mapping.',
@@ -44,6 +67,7 @@ export const projects = [
     github_link: 'https://github.com/RusdiansyahAlief19/RAGudtrucks'
   },
   {
+    id: 'project-local-rag',
     title: 'Local RAG Travel AI Agent & Knowledge Engine',
     category: 'On-Premise Microservices',
     description: 'Designed a self-contained microservice architecture that runs fully locally and privately via Docker Compose, with no paid external APIs. A Laravel 11 frontend connects to an independent Golang backend service that handles price calculation and local LLM inference with Qwen 2.5-3B.',
@@ -53,6 +77,7 @@ export const projects = [
     github_link: 'https://github.com/RusdiansyahAlief19/LocalRAG'
   },
   {
+    id: 'project-bsarec',
     title: 'BSARec Reproduction & Sequential Recommender System Research',
     category: 'Research · Intelligent System Laboratory',
     description: 'Reproduced the AAAI 2024 BSARec paper on the Amazon Beauty, LastFM, and MovieLens-1M datasets as part of research at the Intelligent System Laboratory. Performed a multi-seed audit (seeds 42, 43, 44), evaluated with HR@K and NDCG@K, and analyzed ablation studies on the hyperparameters α and c.',
@@ -71,6 +96,7 @@ export const projects = [
     github_link: 'https://github.com/RusdiansyahAlief19/SchedulingApps'
   },
   {
+    id: 'project-bisindo',
     title: 'BISINDO Gesture Recognition & Sign Language Detector',
     category: 'Computer Vision',
     description: 'Developed a computer vision prototype for real-time detection and translation of Indonesian Sign Language (BISINDO) based on 21 hand landmark coordinates per frame, with low-latency processing.',

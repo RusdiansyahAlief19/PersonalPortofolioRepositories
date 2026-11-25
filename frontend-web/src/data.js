@@ -58,6 +58,7 @@ export const aiFocus = [
 export const projects = [
   {
     id: 'project-astra-ud-trucks',
+    ai_label: 'AI / RAG',
     title: 'Astra UD Trucks – Fleet Intelligence Platform & Hybrid RAG System',
     category: 'Hybrid RAG & Predictive Maintenance',
     description: 'Built a Hybrid Retrieval-Augmented Generation (RAG) system that combines semantic vector search (FAISS) and keyword search (BM25) with Reciprocal Rank Fusion (RRF) to produce grounded answers from documents. Also implemented predictive maintenance for brake, tire, and battery wear (Scikit-Learn) and driver behavior scoring using Z-score mapping.',
@@ -68,6 +69,7 @@ export const projects = [
   },
   {
     id: 'project-local-rag',
+    ai_label: 'AI / RAG',
     title: 'Local RAG Travel AI Agent & Knowledge Engine',
     category: 'On-Premise Microservices',
     description: 'Designed a self-contained microservice architecture that runs fully locally and privately via Docker Compose, with no paid external APIs. A Laravel 11 frontend connects to an independent Golang backend service that handles price calculation and local LLM inference with Qwen 2.5-3B.',
@@ -78,6 +80,7 @@ export const projects = [
   },
   {
     id: 'project-bsarec',
+    ai_label: 'AI / Research',
     title: 'BSARec Reproduction & Sequential Recommender System Research',
     category: 'Research · Intelligent System Laboratory',
     description: 'Reproduced the AAAI 2024 BSARec paper on the Amazon Beauty, LastFM, and MovieLens-1M datasets as part of research at the Intelligent System Laboratory. Performed a multi-seed audit (seeds 42, 43, 44), evaluated with HR@K and NDCG@K, and analyzed ablation studies on the hyperparameters α and c.',
@@ -87,16 +90,8 @@ export const projects = [
     github_link: 'https://github.com/RusdiansyahAlief19/BSARec_Reproduce'
   },
   {
-    title: 'SchedulingApps – Academic Management & Automated Sync Pipeline',
-    category: 'Academic Management Platform',
-    description: 'Built a serverless academic management platform that brings together class schedules, assignments, and personal agendas for Universitas Brawijaya students. Automated synchronization with the Google Classroom and Google Calendar APIs through GitHub Actions cron pipelines, and secured the database schema with Supabase Row-Level Security (RLS).',
-    tech_stack: 'TypeScript, Supabase (PostgreSQL, RLS), Google Cloud APIs, GitHub Actions (CI/CD)',
-    image_path: '/assets/images/projects/scheduling.png',
-    link: null,
-    github_link: 'https://github.com/RusdiansyahAlief19/SchedulingApps'
-  },
-  {
     id: 'project-bisindo',
+    ai_label: 'AI / Computer Vision',
     title: 'BISINDO Gesture Recognition & Sign Language Detector',
     category: 'Computer Vision',
     description: 'Developed a computer vision prototype for real-time detection and translation of Indonesian Sign Language (BISINDO) based on 21 hand landmark coordinates per frame, with low-latency processing.',
@@ -104,6 +99,15 @@ export const projects = [
     image_path: '/assets/images/projects/bisindo.png',
     link: null,
     github_link: 'https://github.com/RusdiansyahAlief19/BISINDO-Sign-Language-Detection'
+  },
+  {
+    title: 'SchedulingApps – Academic Management & Automated Sync Pipeline',
+    category: 'Academic Management Platform',
+    description: 'Built a serverless academic management platform that brings together class schedules, assignments, and personal agendas for Universitas Brawijaya students. Automated synchronization with the Google Classroom and Google Calendar APIs through GitHub Actions cron pipelines, and secured the database schema with Supabase Row-Level Security (RLS).',
+    tech_stack: 'TypeScript, Supabase (PostgreSQL, RLS), Google Cloud APIs, GitHub Actions (CI/CD)',
+    image_path: '/assets/images/projects/scheduling.png',
+    link: null,
+    github_link: 'https://github.com/RusdiansyahAlief19/SchedulingApps'
   },
   {
     title: 'Buddle (smartStudyTimer) – Study Timer & Productivity App',

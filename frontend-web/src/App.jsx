@@ -246,6 +246,9 @@ function App() {
                     </div>
                     
                     <div className="p-7 flex-1 flex flex-col">
+                        {item.ai_label && (
+                            <span className="font-mono text-xs text-gray-400 mb-1">{item.ai_label}</span>
+                        )}
                         <span className="text-xs font-semibold text-jcrea-orange uppercase tracking-wider mb-1">
                             {item.category}
                         </span>

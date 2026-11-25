@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { gsap, useGSAP } from './motion/gsap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { aiFocus, skillCategories, projects, experiences, education, achievements, activities } from './data';
@@ -40,7 +41,29 @@ function EntryCard({ item, className = '' }) {
 }
 
 function Timeline({ items }) {
+  const rootRef = useRef(null);
+  const fillRef = useRef(null);
+
+  // An orange fill grows down the existing rail as the reader scrolls (scrub).
+  // Only the new fill span is animated; the items with data-aos are untouched.
+  // With reduced motion the fill stays hidden and the original rail is shown as before.
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        gsap.set(fillRef.current, { visibility: 'visible' });
+        gsap.fromTo(fillRef.current, { scaleY: 0 }, {
+          scaleY: 1,
+          ease: 'none',
+          scrollTrigger: { trigger: rootRef.current, start: 'top 70%', end: 'bottom 70%', scrub: 0.5 },
+        });
+      });
+    },
+    { scope: rootRef }
+  );
+
   return (
+    <div ref={rootRef} className="relative">
     <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-jcrea-orange/50 before:to-transparent">
         {items.map((item, index) => (
             <div key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active" data-aos="fade-up">
@@ -50,6 +73,9 @@ function Timeline({ items }) {
                 <EntryCard item={item} className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)]" />
             </div>
         ))}
+    </div>
+        <span ref={fillRef} aria-hidden="true" style={{ visibility: 'hidden' }}
+            className="absolute inset-0 ml-5 -translate-x-px md:mx-auto md:translate-x-0 h-full w-0.5 origin-top bg-gradient-to-b from-transparent via-jcrea-orange to-jcrea-orange/80 pointer-events-none"></span>
     </div>
   );
 }

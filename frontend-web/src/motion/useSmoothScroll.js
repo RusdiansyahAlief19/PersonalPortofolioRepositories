@@ -29,6 +29,9 @@ export function useSmoothScroll() {
   }, []);
 }
 
+// The live Lenis instance, or null (reduced motion, or not mounted yet).
+export const getLenis = () => instance;
+
 // Scroll to an element while respecting its CSS scroll-margin-top (Lenis ignores it),
 // so targets are not hidden under the fixed navbar. Falls back to native scrolling.
 export function scrollToElement(el) {

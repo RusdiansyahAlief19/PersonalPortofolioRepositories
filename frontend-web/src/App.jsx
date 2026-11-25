@@ -6,6 +6,18 @@ import { useSmoothScroll, scrollToElement } from './motion/useSmoothScroll';
 import { useHeroNameReveal } from './motion/useHeroNameReveal';
 import { useFinePointer } from './motion/useFinePointer';
 import Magnet from './components/Magnet';
+import MobileMenu from './components/MobileMenu';
+
+// Section links, shared by the desktop navbar and the mobile menu.
+const navLinks = [
+  { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#achievements', label: 'Activities' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#contact', label: 'Contact' },
+];
 
 // Card used by the experience/education timeline and the competitions & organizations grid.
 // Same markup and classes as the original experience card; period and stack line are optional.
@@ -80,6 +92,8 @@ function App() {
             <a href="#experience" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Experience</a>
             <a href="#contact" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Contact</a>
         </div>
+
+        <MobileMenu links={navLinks} />
       </nav>
 
       {/* HERO SECTION */}

@@ -7,6 +7,7 @@ import { useHeroNameReveal } from './motion/useHeroNameReveal';
 import { useFinePointer } from './motion/useFinePointer';
 import Magnet from './components/Magnet';
 import MobileMenu from './components/MobileMenu';
+import ScrollProgress from './components/ScrollProgress';
 import { useActiveSection } from './motion/useActiveSection';
 import { useNavPill } from './motion/useNavPill';
 
@@ -91,6 +92,8 @@ function App() {
 
   return (
     <>
+      <ScrollProgress />
+
       {/* NAVBAR */}
       <nav ref={navRef} style={{ position: 'fixed', top: '1.5rem', left: '50%', transform: 'translateX(-50%)', zIndex: 50, width: '95%', maxWidth: '64rem' }}
           className="bg-jcrea-gray/80 backdrop-blur-md rounded-full px-6 py-3 flex items-center justify-between gap-8 border border-white/10 shadow-2xl"

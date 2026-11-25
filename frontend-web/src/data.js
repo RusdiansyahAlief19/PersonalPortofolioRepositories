@@ -1,22 +1,27 @@
-// data.js — Unslopped, impact-driven, tailored for AI / Machine Learning & Data Engineering
-// Based on 02_Portofolio/data_unslopped.js
+// data.js — content synced with the latest CV (English).
+// Exception agreed with the owner: the BUFEST entry in `achievements` is kept from the
+// previous site (faithful English translation), backed by the certificate PDF.
 
 export const skillCategories = [
   {
-    category: "Machine Learning & Deep Learning",
-    skills: ["PyTorch", "Scikit-Learn", "Sequential Recommendation (BSARec, SASRec)", "Predictive Analytics", "Model Benchmarking (HR@K, NDCG@K)", "Weights & Biases (W&B)"]
+    category: "Programming Languages",
+    skills: ["PHP", "JavaScript", "TypeScript", "Python", "Go (Golang)", "Java", "HTML5", "CSS3/Tailwind CSS"]
   },
   {
-    category: "Generative AI & Vector Engines",
-    skills: ["Hybrid RAG (FAISS + BM25 + Reciprocal Rank Fusion)", "LangChain", "ChromaDB", "Ollama (Qwen 2.5)", "Google Gemini API", "Anti-Hallucination Grounding"]
+    category: "Frameworks & Tools",
+    skills: ["Laravel", "React.js", "Alpine.js", "FastAPI", "LangChain", "PyTorch", "Scikit-Learn", "Supabase (PostgreSQL)", "Docker", "Git/GitHub", "GitHub Actions", "Railway", "Vercel"]
   },
   {
-    category: "Data Engineering & Systems",
-    skills: ["Python (FastAPI, Pandas, NumPy, SciPy)", "Go (Golang Data Serving)", "Supabase (PostgreSQL, RLS)", "Automated Cron ETL Pipelines", "Docker & Docker Compose", "Git / GitHub Actions"]
+    category: "Design & Systems Analysis",
+    skills: ["UI/UX Prototyping (Figma, Canva)", "System Analysis & Design (SAD)", "Data Structures & Algorithms"]
   },
   {
-    category: "Computer Vision & Full-Stack",
-    skills: ["Google MediaPipe (3D Hand Landmarks)", "OpenCV", "React.js", "Tailwind CSS", "Linux", "Railway / Vercel"]
+    category: "Artificial Intelligence & Security",
+    skills: ["Natural Language Processing (NLP)", "RAG (FAISS, BM25, ChromaDB, Ollama)", "Sequential Recommender Systems", "Computer Vision (OpenCV, MediaPipe)", "Basic Threat Modeling (STRIDE)", "Packet Analysis (Wireshark/Nmap)"]
+  },
+  {
+    category: "Soft Skills",
+    skills: ["Problem Solving", "Project Leadership", "Business Planning & Pitching", "Public Communication (Public Speaking / MC)", "Team Collaboration"]
   }
 ];
 
@@ -30,120 +35,153 @@ export const skills = [
 
 export const projects = [
   {
-    title: 'Astra UD Trucks — Fleet Intelligence & Hybrid RAG Platform',
-    category: 'Enterprise AI & Data Platform',
-    description: 'Platform AI tingkat enterprise berbasis Hybrid Search RAG (Vector FAISS + BM25 Keyword Search + Reciprocal Rank Fusion) yang di-grounding dengan Google Gemini 2.5 Flash untuk konsultasi teknis bebas halusinasi. Dilengkapi dashboard Predictive Maintenance berbasis Machine Learning (Scikit-Learn) untuk memprediksi keausan komponen armada serta Driver Behavior Scoring berbasis Z-score linear mapping.',
-    tech_stack: 'Python, FastAPI, Gemini 2.5 Flash, FAISS, BM25, LangChain, Scikit-Learn, Pandas, React.js',
+    title: 'Astra UD Trucks – Fleet Intelligence Platform & Hybrid RAG System',
+    category: 'Hybrid RAG & Predictive Maintenance',
+    description: 'Built a Hybrid Retrieval-Augmented Generation (RAG) system that combines semantic vector search (FAISS) and keyword search (BM25) with Reciprocal Rank Fusion (RRF) to produce grounded answers from documents. Also implemented predictive maintenance for brake, tire, and battery wear (Scikit-Learn) and driver behavior scoring using Z-score mapping.',
+    tech_stack: 'Python, FastAPI, Google Gemini 2.5 Flash, FAISS, BM25, LangChain, Scikit-Learn, React.js',
     image_path: '/assets/images/projects/ragudtrucks.png',
     link: null,
-    github_link: 'https://github.com/RusdiansyahAlief19/RAGudtrucks',
-    highlight: 'Enterprise Hybrid RAG + Predictive ML'
-  },
-  {
-    title: 'BSARec Reproduce & Sequential Recommender System Research',
-    category: 'Deep Learning Research (AAAI 2024)',
-    description: 'Riset reproduksi paper AAAI 2024 ("An Attentive Inductive Bias for Sequential Recommendation beyond the Self-Attention") di Laboratorium Komputasi Cerdas FILKOM UB. Melakukan benchmarking empiris multi-seed (42, 43, 44) terhadap SASRec pada dataset Amazon Beauty, LastFM, dan MovieLens-1M dengan metrik HR@K dan NDCG@K, studi ablasi hiperparameter, serta tracking eksperimen di Weights & Biases.',
-    tech_stack: 'Python, PyTorch, Weights & Biases (W&B), SciPy, Google Colab (Tesla T4 GPU)',
-    image_path: '/assets/images/projects/bsarec.png',
-    link: null,
-    github_link: 'https://github.com/RusdiansyahAlief19/BSARec_Reproduce',
-    highlight: 'AAAI 2024 Paper Reproduction'
+    github_link: 'https://github.com/RusdiansyahAlief19/RAGudtrucks'
   },
   {
     title: 'Local RAG Travel AI Agent & Knowledge Engine',
-    category: 'On-Premise Microservices & Vector DB',
-    description: 'Asisten AI customer service berbasis Retrieval-Augmented Generation yang berjalan 100% lokal di Docker tanpa bergantung pada API eksternal berbayar. Arsitektur decoupled microservice: frontend & session di Laravel 11 terhubung ke high-throughput RAG engine berbasis Golang (langchaingo), ChromaDB vector store, dan LLM lokal Qwen 2.5 via Ollama untuk estimasi harga paket wisata presisi.',
-    tech_stack: 'Golang, ChromaDB, Ollama (Qwen 2.5), Laravel 11, Tailwind CSS, Alpine.js, Docker Compose',
+    category: 'On-Premise Microservices',
+    description: 'Designed a self-contained microservice architecture that runs fully locally and privately via Docker Compose, with no paid external APIs. A Laravel 11 frontend connects to an independent Golang backend service that handles price calculation and local LLM inference with Qwen 2.5-3B.',
+    tech_stack: 'Laravel 11, Golang (langchaingo), ChromaDB, Ollama (qwen2.5:3b), Docker Compose, Tailwind CSS, Alpine.js',
     image_path: '/assets/images/projects/local-rag.jpg',
     link: null,
-    github_link: 'https://github.com/RusdiansyahAlief19/LocalRAG',
-    highlight: 'Golang Vector Serving + On-Premise LLM'
+    github_link: 'https://github.com/RusdiansyahAlief19/LocalRAG'
   },
   {
-    title: 'SchedulingApps — Academic Ingestion Pipeline & Cloud Platform',
-    category: 'Data Engineering & Cloud Integration',
-    description: 'Platform manajemen jadwal dan sinkronisasi akademik terpusat untuk mahasiswa Universitas Brawijaya. Mengimplementasikan pipeline penarikan data berkala otomatis (automated cron ingestion) via GitHub Actions dari Google Classroom API, Google Calendar API, dan scraping portal kampus, dengan penyimpanan relasional aman di Supabase PostgreSQL ber-Row Level Security (RLS).',
-    tech_stack: 'TypeScript, Supabase (PostgreSQL, RLS), Google Cloud APIs, GitHub Actions CI/CD',
+    title: 'BSARec Reproduction & Sequential Recommender System Research',
+    category: 'Research · Intelligent System Laboratory',
+    description: 'Reproduced the AAAI 2024 BSARec paper on the Amazon Beauty, LastFM, and MovieLens-1M datasets as part of research at the Intelligent System Laboratory. Performed a multi-seed audit (seeds 42, 43, 44), evaluated with HR@K and NDCG@K, and analyzed ablation studies on the hyperparameters α and c.',
+    tech_stack: 'Python, PyTorch, Weights & Biases (W&B), SciPy, Google Colab (Tesla T4 GPU)',
+    image_path: '/assets/images/projects/bsarec.png',
+    link: null,
+    github_link: 'https://github.com/RusdiansyahAlief19/BSARec_Reproduce'
+  },
+  {
+    title: 'SchedulingApps – Academic Management & Automated Sync Pipeline',
+    category: 'Academic Management Platform',
+    description: 'Built a serverless academic management platform that brings together class schedules, assignments, and personal agendas for Universitas Brawijaya students. Automated synchronization with the Google Classroom and Google Calendar APIs through GitHub Actions cron pipelines, and secured the database schema with Supabase Row-Level Security (RLS).',
+    tech_stack: 'TypeScript, Supabase (PostgreSQL, RLS), Google Cloud APIs, GitHub Actions (CI/CD)',
     image_path: '/assets/images/projects/scheduling.png',
     link: null,
-    github_link: 'https://github.com/RusdiansyahAlief19/SchedulingApps',
-    highlight: 'Automated Cron ETL + Supabase RLS'
+    github_link: 'https://github.com/RusdiansyahAlief19/SchedulingApps'
   },
   {
-    title: 'BISINDO Real-Time Sign Language Gesture Recognition',
-    category: 'Computer Vision & Accessibility',
-    description: 'Sistem computer vision real-time untuk mendeteksi dan menerjemahkan Bahasa Isyarat Indonesia (BISINDO) guna mempermudah aksesibilitas komunikasi. Mengekstraksi 21 koordinat 3D hand landmarks spasial per frame melalui webcam menggunakan Google MediaPipe dengan algoritma klasifikasi berlatensi rendah.',
-    tech_stack: 'Python, OpenCV, Google MediaPipe, NumPy',
+    title: 'BISINDO Gesture Recognition & Sign Language Detector',
+    category: 'Computer Vision',
+    description: 'Developed a computer vision prototype for real-time detection and translation of Indonesian Sign Language (BISINDO) based on 21 hand landmark coordinates per frame, with low-latency processing.',
+    tech_stack: 'Python, OpenCV, MediaPipe, NumPy',
     image_path: '/assets/images/projects/bisindo.png',
     link: null,
-    github_link: 'https://github.com/RusdiansyahAlief19/BISINDO-Sign-Language-Detection',
-    highlight: 'Real-time 3D Landmark Tracking'
+    github_link: 'https://github.com/RusdiansyahAlief19/BISINDO-Sign-Language-Detection'
   },
   {
-    title: 'Buddle (smartStudyTimer) — Adaptive Study Productivity App',
-    category: 'Full-Stack Web Application',
-    description: 'Aplikasi manajemen waktu belajar interaktif dengan integrasi teknik Pomodoro dan Flowtime untuk memaksimalkan fokus belajar. Dibangun dengan antarmuka dinamis dan ringan serta di-deploy secara mandiri di cloud platform Railway.',
-    tech_stack: 'Laravel, Alpine.js, Tailwind CSS, MySQL, Railway Cloud',
+    title: 'Buddle (smartStudyTimer) – Study Timer & Productivity App',
+    category: 'Productivity Web App',
+    description: 'Built a study-time management web app that supports the Pomodoro and Flowtime techniques, with focus progress visualization. Designed a responsive, interactive UI with Tailwind CSS and Alpine.js, and deployed the app independently on Railway.',
+    tech_stack: 'Laravel, Alpine.js, Tailwind CSS, Railway',
     image_path: '/assets/images/projects/study-timer.jpg',
     link: null,
-    github_link: 'https://github.com/RusdiansyahAlief19/smartStudyTimer',
-    highlight: 'Live Deployment on Railway'
+    github_link: 'https://github.com/RusdiansyahAlief19/smartStudyTimer'
+  },
+  {
+    title: 'SAB Tour & Travel – Landing Page & Web Platform',
+    category: 'Landing Page',
+    description: 'Designed and launched a modern, responsive landing page for travel service provider SAB Tour & Travel. Managed the integration of the tour package catalog display, refined the visual branding, and organized systematic digital bookkeeping.',
+    tech_stack: 'HTML, Tailwind CSS, Vercel',
+    image_path: '/assets/images/projects/sab-tour.png',
+    link: null,
+    github_link: null
   }
 ];
 
+// Newest first. The research internship has no dates in the CV, so none are shown.
 export const experiences = [
   {
-    period: '2026 - Sekarang',
+    period: null,
     type: 'Research',
-    title: 'Research Intern – NLP & Sequential Recommendation',
-    organization: 'Laboratorium Komputasi Cerdas, FILKOM Universitas Brawijaya',
-    description: 'Meneliti arsitektur deep learning untuk model rekomendasi sekuensial dan mekanisme self-attention. Mereproduksi paper AAAI 2024 BSARec, mengidentifikasi research gap terhadap data interaksi bising, menjalankan benchmarking multi-seed terhadap baseline SASRec, dan memonitor eksperimen via Weights & Biases.'
+    title: 'Research Intern – Natural Language Processing (NLP) & Sequential Recommendation',
+    organization: 'Intelligent System Laboratory, Universitas Brawijaya',
+    description: 'Worked on NLP research as part of the laboratory internship program. Conducted an in-depth literature review of the BSARec paper to identify research gaps, reproduced its experiments, and translated the gaps into candidate research directions.'
   },
   {
-    period: 'Agu 2026 - Sekarang',
-    type: 'Academic',
-    title: 'Asisten Praktikum Analisis & Perancangan Sistem (APS)',
-    organization: 'Fakultas Ilmu Komputer, Universitas Brawijaya',
-    description: 'Membimbing dan mengevaluasi mahasiswa dalam siklus SDLC dan perancangan arsitektur data. Mengajarkan pemodelan basis data relasional (ERD), diagram alur data (DFD/UML), normalisasi skema, hingga implementasi sistem fungsional.'
+    period: 'August 2026 – December 2026',
+    type: 'Teaching',
+    title: 'Teaching Assistant – Systems Analysis and Design (APS)',
+    organization: 'Faculty of Computer Science, Universitas Brawijaya',
+    description: 'Mentored and evaluated dozens of students throughout the Software Development Life Cycle (SDLC). Taught database modeling with Entity Relationship Diagrams (ERD), system workflow diagrams, and interactive prototyping in Figma, from design to a functional, test-ready system.'
   },
   {
-    period: 'Des 2023 - Apr 2024',
-    type: 'Internship',
-    title: 'Software Engineer Intern – Backend & Data Processing',
-    organization: 'PT Finnet Indonesia',
-    description: 'Mengembangkan modul backend microservices berbasis Go (Golang) untuk pemrosesan data internal berkecepatan tinggi. Membangun antarmuka interaktif dengan React.js dan mengonfigurasi kontainerisasi lingkungan pengujian dengan Docker.'
-  },
-  {
-    period: 'Agu 2024 - Sekarang',
+    period: 'August 2024 – December 2026',
     type: 'Work',
     title: 'Full-Stack Developer & IT Support',
     organization: 'SAB Tour & Travel',
-    description: 'Merancang dan memelihara platform web operasional serta portal pemesanan paket wisata end-to-end. Mengintegrasikan basis data pesanan, katalog digital, serta menghubungkannya dengan sistem asisten Local RAG.'
+    description: 'Designed, developed, and maintained an end-to-end operational web platform and travel package booking portal, covering order data, tour catalogs, and internal financial record-keeping. Managed server configuration, cloud deployment workflows, and domains.'
   },
   {
-    period: 'Agu 2024 - Sekarang',
+    period: 'December 2023 – April 2024',
+    type: 'Internship',
+    title: 'Software Engineering Intern',
+    organization: 'PT. Finnet Indonesia',
+    stack: 'React.js · Go (Golang) · Docker',
+    description: 'Built React.js web interfaces to digitize internal manual workflows and Go (Golang) backend modules for web feature data processing. Set up Docker development environments for consistent deployments, working in an Agile/Scrum team with Git.'
+  }
+];
+
+export const education = [
+  {
+    period: 'August 2024 – Present',
     type: 'Education',
-    title: 'S1 Teknik Informatika',
-    organization: 'Universitas Brawijaya (FILKOM)',
-    description: 'Fokus pada Kecerdasan Buatan (AI), Machine Learning, Rekayasa Perangkat Lunak, Struktur Data & Algoritma, dan Sistem Terdistribusi.'
+    title: "Bachelor's Degree in Informatics Engineering (S1)",
+    organization: 'Universitas Brawijaya — Malang, East Java',
+    description: 'Focus: Software Engineering, Data Structures & Algorithms, Systems Analysis & Design, Computer Networks.'
   },
   {
-    period: 'Jul 2021 - Jul 2024',
+    period: 'July 2021 – July 2024',
     type: 'Education',
-    title: 'Rekayasa Perangkat Lunak',
-    organization: 'SMK Telkom Malang',
-    description: 'Membangun fondasi kuat dalam Object-Oriented Programming (OOP), web development modern, dan basis data relasional.'
+    title: 'Software Engineering',
+    organization: 'SMK Telkom Malang — Malang, East Java',
+    description: 'Focus: Object-Oriented Programming, Web Development, Databases.'
   }
 ];
 
 export const achievements = [
   {
     year: '2026',
-    title: 'Finalis Business Festival ("BUFEST") 2026',
+    title: 'Finalist – Business Festival ("BUFEST") 2026',
     organizer: 'HMDTIF FILKOM Universitas Brawijaya',
     theme: 'Data-Driven Business Innovation',
     certificate_no: '00459/HMDTIF FILKOM-UB/BISNIS/BUFEST/D/X/2026',
-    description: 'Menembus babak final tingkat nasional dengan merancang proposal inovasi bisnis berbasis permodelan analitik data pasar dan integrasi teknologi cerdas.',
+    description: 'Advanced to the national final by designing a business innovation proposal based on market data analytics modeling and intelligent technology integration.',
     certificate_link: '/docs/finalisLombaBussinesPlanUB.pdf'
+  }
+];
+
+// Competition and organization entries shown below the BUFEST card.
+export const activities = [
+  {
+    period: null,
+    type: 'Competition',
+    title: 'Business Plan Competition',
+    organization: null,
+    description: 'Actively participated in business plan competitions, developing and presenting business plans to judging panels, and took part in various other competitions to hone teamwork, problem-solving, and presentation skills.'
+  },
+  {
+    period: '2025',
+    type: 'Organization',
+    title: 'Committee Chairperson – Industry Visit (RECON)',
+    organization: 'Informatics Engineering Student Association (HMDTIF), Universitas Brawijaya',
+    description: 'Led the organizing committee in planning and executing a student industry visit to Telkom Infrastruktur Surabaya, with full responsibility for budget, institutional permits, timelines, and coordination with industry stakeholders.'
+  },
+  {
+    period: '2025 – 2026',
+    type: 'Organization',
+    title: 'Internal Resource Development (PSDI) / Human Resources Staff',
+    organization: 'Informatics Engineering Student Association (HMDTIF), Universitas Brawijaya',
+    description: 'Facilitated internal recruitment and member performance assessments, coordinated Leaderless Group Discussion (LGD) sessions and the Staff of the Month program, and managed internal communication to strengthen cross-division synergy.'
   }
 ];

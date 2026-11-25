@@ -87,14 +87,14 @@ function App() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-jcrea-orange/20 rounded-full blur-[130px] -z-10 pointer-events-none"></div>
 
         <div className="text-center z-10 max-w-4xl mx-auto" data-aos="zoom-in" data-aos-duration="1200">
-            <span className="inline-block text-xs md:text-sm font-mono text-gray-300 tracking-wider mb-6">
-                [ AI, Machine Learning &amp; Data Engineer ]
-            </span>
+            <p className="text-xs md:text-sm text-gray-400 mb-6">
+                Informatics Engineering, Universitas Brawijaya
+            </p>
             <h1 ref={heroNameRef} className="text-4xl md:text-7xl font-black tracking-tight mb-3 text-white">
                 Rusdiansyah <span className="text-jcrea-orange">Alief</span> Prasetya
             </h1>
             <p className="text-lg md:text-2xl text-gray-300 max-w-2xl mx-auto font-medium mb-8 leading-relaxed">
-                Building enterprise <span className="text-white font-bold">Hybrid RAG systems</span>, deep learning <span className="text-white font-bold">sequential recommenders</span>, and high-throughput data pipelines.
+                I build <span className="text-jcrea-orange font-bold">RAG systems</span> and research sequential recommendation at the Intelligent System Laboratory.
             </p>
         </div>
 

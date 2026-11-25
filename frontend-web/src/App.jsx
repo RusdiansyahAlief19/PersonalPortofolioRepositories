@@ -2,13 +2,14 @@ import { useEffect, useRef } from 'react';
 import { gsap, ScrollTrigger, useGSAP } from './motion/gsap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { aiFocus, skillCategories, projects, experiences, education, achievements, activities } from './data';
+import { aiFocus, projects, experiences, education, achievements, activities } from './data';
 import { useSmoothScroll, scrollToElement } from './motion/useSmoothScroll';
 import { useHeroNameReveal } from './motion/useHeroNameReveal';
 import { useFinePointer } from './motion/useFinePointer';
 import Magnet from './components/Magnet';
 import MobileMenu from './components/MobileMenu';
 import ScrollProgress from './components/ScrollProgress';
+import SkillsGrid from './components/SkillsGrid';
 import RagDiagram from './components/ai/RagDiagram';
 import HandLandmarks from './components/ai/HandLandmarks';
 import ExperimentLog from './components/ai/ExperimentLog';
@@ -289,25 +290,7 @@ function App() {
             <p className="text-gray-400">Programming, frameworks, systems design, AI &amp; security, and soft skills.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8" data-aos="fade-up" data-aos-delay="100">
-            {skillCategories.map((group, groupIdx) => (
-                <div key={groupIdx} className="bg-jcrea-gray/50 backdrop-blur-sm border border-white/10 hover:border-jcrea-orange/40 rounded-3xl p-8 transition-all duration-300 shadow-xl group hover:-translate-y-1">
-                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-                        <span className="w-3 h-3 rounded-full bg-jcrea-orange shadow-[0_0_10px_#FF6B00]"></span>
-                        <h4 className="text-xl font-bold text-white group-hover:text-jcrea-orange transition-colors">
-                            {group.category}
-                        </h4>
-                    </div>
-                    <div className="flex flex-wrap gap-2.5">
-                        {group.skills.map((skill, skillIdx) => (
-                            <span key={skillIdx} className="bg-jcrea-dark/80 text-gray-200 border border-white/10 group-hover:border-jcrea-orange/30 px-3.5 py-2 rounded-xl text-sm font-medium hover:bg-jcrea-orange hover:text-white transition-all cursor-default">
-                                {skill}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            ))}
-        </div>
+        <SkillsGrid />
       </section>
 
       {/* FEATURED PROJECTS */}

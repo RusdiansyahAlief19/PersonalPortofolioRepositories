@@ -34,11 +34,13 @@ export const getLenis = () => instance;
 
 // Scroll to an element while respecting its CSS scroll-margin-top (Lenis ignores it),
 // so targets are not hidden under the fixed navbar. Falls back to native scrolling.
-export function scrollToElement(el) {
+// `onComplete` (optional) runs once the element has been reached.
+export function scrollToElement(el, onComplete) {
   if (instance) {
     const margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
-    instance.scrollTo(el, { offset: -margin });
+    instance.scrollTo(el, { offset: -margin, onComplete });
   } else {
     el.scrollIntoView();
+    onComplete?.();
   }
 }

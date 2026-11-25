@@ -25,6 +25,33 @@ export const skillCategories = [
   }
 ];
 
+// Skill chip -> the exact terms that name it in a project's tech_stack or title.
+// Only literal matches count (e.g. no "Laravel implies PHP"), so the "Used in" line
+// never claims more than the project cards already say. Skills without an entry
+// (or without a match) stay plain, non-interactive chips.
+export const skillAliases = {
+  'TypeScript': ['TypeScript'],
+  'Python': ['Python'],
+  'Go (Golang)': ['Golang'],
+  'HTML5': ['HTML'],
+  'CSS3/Tailwind CSS': ['Tailwind CSS'],
+  'Laravel': ['Laravel'],
+  'React.js': ['React.js'],
+  'Alpine.js': ['Alpine.js'],
+  'FastAPI': ['FastAPI'],
+  'LangChain': ['LangChain', 'langchaingo'],
+  'PyTorch': ['PyTorch'],
+  'Scikit-Learn': ['Scikit-Learn'],
+  'Supabase (PostgreSQL)': ['Supabase'],
+  'Docker': ['Docker'],
+  'GitHub Actions': ['GitHub Actions'],
+  'Railway': ['Railway'],
+  'Vercel': ['Vercel'],
+  'RAG (FAISS, BM25, ChromaDB, Ollama)': ['FAISS', 'BM25', 'ChromaDB', 'Ollama'],
+  'Sequential Recommender Systems': ['Sequential Recommender'],
+  'Computer Vision (OpenCV, MediaPipe)': ['OpenCV', 'MediaPipe'],
+};
+
 // Flat skills array for backward compatibility
 export const skills = [
   'Python', 'PyTorch', 'FastAPI', 'Go (Golang)', 'Hybrid RAG (FAISS + BM25 + RRF)',
@@ -61,6 +88,7 @@ export const aiFocus = [
 export const projects = [
   {
     id: 'project-astra-ud-trucks',
+    short: 'Astra UD Trucks',
     ai_label: 'AI / RAG',
     title: 'Astra UD Trucks – Fleet Intelligence Platform & Hybrid RAG System',
     category: 'Hybrid RAG & Predictive Maintenance',
@@ -72,6 +100,7 @@ export const projects = [
   },
   {
     id: 'project-local-rag',
+    short: 'Local RAG',
     ai_label: 'AI / RAG',
     title: 'Local RAG Travel AI Agent & Knowledge Engine',
     category: 'On-Premise Microservices',
@@ -83,6 +112,7 @@ export const projects = [
   },
   {
     id: 'project-bsarec',
+    short: 'BSARec',
     ai_label: 'AI / Research',
     title: 'BSARec Reproduction & Sequential Recommender System Research',
     category: 'Research · Intelligent System Laboratory',
@@ -94,6 +124,7 @@ export const projects = [
   },
   {
     id: 'project-bisindo',
+    short: 'BISINDO',
     ai_label: 'AI / Computer Vision',
     title: 'BISINDO Gesture Recognition & Sign Language Detector',
     category: 'Computer Vision',
@@ -104,6 +135,8 @@ export const projects = [
     github_link: 'https://github.com/RusdiansyahAlief19/BISINDO-Sign-Language-Detection'
   },
   {
+    id: 'project-scheduling',
+    short: 'SchedulingApps',
     title: 'SchedulingApps – Academic Management & Automated Sync Pipeline',
     category: 'Academic Management Platform',
     description: 'Built a serverless academic management platform that brings together class schedules, assignments, and personal agendas for Universitas Brawijaya students. Automated synchronization with the Google Classroom and Google Calendar APIs through GitHub Actions cron pipelines, and secured the database schema with Supabase Row-Level Security (RLS).',
@@ -113,6 +146,8 @@ export const projects = [
     github_link: 'https://github.com/RusdiansyahAlief19/SchedulingApps'
   },
   {
+    id: 'project-buddle',
+    short: 'Buddle',
     title: 'Buddle (smartStudyTimer) – Study Timer & Productivity App',
     category: 'Productivity Web App',
     description: 'Built a study-time management web app that supports the Pomodoro and Flowtime techniques, with focus progress visualization. Designed a responsive, interactive UI with Tailwind CSS and Alpine.js, and deployed the app independently on Railway.',
@@ -122,6 +157,8 @@ export const projects = [
     github_link: 'https://github.com/RusdiansyahAlief19/smartStudyTimer'
   },
   {
+    id: 'project-sab',
+    short: 'SAB Tour & Travel',
     title: 'SAB Tour & Travel – Landing Page & Web Platform',
     category: 'Landing Page',
     description: 'Designed and launched a modern, responsive landing page for travel service provider SAB Tour & Travel. Managed the integration of the tour package catalog display, refined the visual branding, and organized systematic digital bookkeeping.',

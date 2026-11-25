@@ -1,0 +1,5 @@
+/* Lenis drives scrolling itself; native CSS smooth scrolling would ease twice.
+   Only applies while Lenis is active (not under reduced motion). */
+html.lenis {
+  scroll-behavior: auto !important;
+}

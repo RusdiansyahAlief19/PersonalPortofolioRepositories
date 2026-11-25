@@ -26,3 +26,11 @@
     @apply bg-jcrea-orange text-white -translate-y-0.5 border-jcrea-orange;
   }
 }
+
+/* Brief outline on a project card reached from a skill's "Used in" link.
+   Unlayered so it beats the card's border utilities. AOS limits the card's transition to
+   opacity/transform, so the outline switches on and off without easing. */
+[data-spotlight] {
+  border-color: rgb(255 107 0 / 0.9);
+  box-shadow: 0 0 0 1px rgb(255 107 0 / 0.5), 0 0 30px rgb(255 107 0 / 0.15);
+}

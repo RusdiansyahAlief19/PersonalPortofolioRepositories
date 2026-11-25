@@ -1,28 +1,156 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { gsap, ScrollTrigger, useGSAP } from './motion/gsap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { skillCategories, projects, experiences, achievements } from './data';
+import { aiFocus, projects, experiences, education, achievements, activities } from './data';
+import { useSmoothScroll, scrollToElement } from './motion/useSmoothScroll';
+import { useHeroNameReveal } from './motion/useHeroNameReveal';
+import { useFinePointer } from './motion/useFinePointer';
+import Magnet from './components/Magnet';
+import MobileMenu from './components/MobileMenu';
+import ScrollProgress from './components/ScrollProgress';
+import SkillsGrid from './components/SkillsGrid';
+import RagDiagram from './components/ai/RagDiagram';
+import HandLandmarks from './components/ai/HandLandmarks';
+import ExperimentLog from './components/ai/ExperimentLog';
+import { useActiveSection } from './motion/useActiveSection';
+import { useNavPill } from './motion/useNavPill';
+
+// Small explanatory visual shown at the top of an AI Focus card (key = aiFocus[].visual).
+const aiVisuals = { rag: RagDiagram, log: ExperimentLog, hand: HandLandmarks };
+
+// Section links, shared by the desktop navbar and the mobile menu.
+const navLinks = [
+  { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#achievements', label: 'Activities' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#contact', label: 'Contact' },
+];
+
+// Card used by the experience/education timeline and the competitions & organizations grid.
+// Same markup and classes as the original experience card; period and stack line are optional.
+function EntryCard({ item, className = '' }) {
+  return (
+    <div className={`p-6 rounded-2xl bg-jcrea-gray/60 border border-white/5 hover:border-jcrea-orange/30 transition-all shadow-xl ${className}`}>
+        <div className="flex items-center justify-between mb-2">
+            {item.period && <span className="text-jcrea-orange font-bold text-sm tracking-wide">{item.period}</span>}
+            <span className="ml-auto bg-black/30 text-xs px-2 py-1 rounded-md text-gray-400 uppercase tracking-wider">{item.type}</span>
+        </div>
+        <h4 className="text-xl font-bold text-white mb-1">{item.title}</h4>
+        {item.organization && <h5 className="text-sm font-medium text-gray-400 mb-3">{item.organization}</h5>}
+        {item.stack && <p className="font-mono text-xs text-gray-400 mb-3">{item.stack}</p>}
+        <p className="text-gray-300 text-sm leading-relaxed">{item.description}</p>
+    </div>
+  );
+}
+
+function Timeline({ items }) {
+  const rootRef = useRef(null);
+  const fillRef = useRef(null);
+
+  // An orange fill grows down the existing rail as the reader scrolls (scrub).
+  // Only the new fill span is animated; the items with data-aos are untouched.
+  // With reduced motion the fill stays hidden and the original rail is shown as before.
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        gsap.set(fillRef.current, { visibility: 'visible' });
+        gsap.fromTo(fillRef.current, { scaleY: 0 }, {
+          scaleY: 1,
+          ease: 'none',
+          scrollTrigger: { trigger: rootRef.current, start: 'top 70%', end: 'bottom 70%', scrub: 0.5 },
+        });
+      });
+    },
+    { scope: rootRef }
+  );
+
+  return (
+    <div ref={rootRef} className="relative">
+    <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-jcrea-orange/50 before:to-transparent">
+        {items.map((item, index) => (
+            <div key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active" data-aos="fade-up">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-jcrea-dark bg-jcrea-orange text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"></path></svg>
+                </div>
+                <EntryCard item={item} className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)]" />
+            </div>
+        ))}
+    </div>
+        <span ref={fillRef} aria-hidden="true" style={{ visibility: 'hidden' }}
+            className="absolute inset-0 ml-5 -translate-x-px md:mx-auto md:translate-x-0 h-full w-0.5 origin-top bg-gradient-to-b from-transparent via-jcrea-orange to-jcrea-orange/80 pointer-events-none"></span>
+    </div>
+  );
+}
+
+// Subtle pull for the hero CTAs; desktop pointers only.
+const ctaMagnet = { padding: 60, magnetStrength: 6, maxOffset: 10, wrapperClassName: 'w-full sm:w-auto' };
 
 function App() {
+  const heroNameRef = useRef(null);
+  const navRef = useRef(null);
+  const navPillRef = useRef(null);
+  const finePointer = useFinePointer();
+
+  useSmoothScroll();
+  useHeroNameReveal(heroNameRef);
+  const activeSection = useActiveSection(
+    navLinks.map((link) => link.href.slice(1)),
+    { 'ai-focus': 'home' }
+  );
+  useNavPill(navRef, navPillRef, activeSection);
+
+  // Desktop navbar link: white when its section is in view, grey otherwise.
+  const deskLink = ({ href, label }) => {
+    const active = href === `#${activeSection}`;
+    return (
+      <a key={href} href={href} aria-current={active ? 'true' : undefined}
+        className={`font-medium text-sm transition-colors ${active ? 'text-white' : 'text-gray-400 hover:text-white'}`}>
+        {label}
+      </a>
+    );
+  };
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
       once: true,
       offset: 50,
     });
+
+    // ScrollTrigger measures positions while AOS still holds its start offsets
+    // (e.g. fade-up = 100px lower), so triggers inside AOS cards would fire late.
+    // Re-measure once an AOS animation has finished (debounced; no element is animated).
+    let timer = 0;
+    const onAosIn = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => ScrollTrigger.refresh(), 1100);
+    };
+    document.addEventListener('aos:in', onAosIn);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('aos:in', onAosIn);
+    };
   }, []);
 
   return (
     <>
+      <ScrollProgress />
+
       {/* NAVBAR */}
-      <nav style={{ position: 'fixed', top: '1.5rem', left: '50%', transform: 'translateX(-50%)', zIndex: 50, width: '95%', maxWidth: '64rem' }}
+      <nav ref={navRef} style={{ position: 'fixed', top: '1.5rem', left: '50%', transform: 'translateX(-50%)', zIndex: 50, width: '95%', maxWidth: '64rem' }}
           className="bg-jcrea-gray/80 backdrop-blur-md rounded-full px-6 py-3 flex items-center justify-between gap-8 border border-white/10 shadow-2xl"
           data-aos="fade-down">
 
+        <span ref={navPillRef} aria-hidden="true"
+            className="hidden md:block absolute top-0 left-0 -z-10 bg-jcrea-orange rounded-full shadow-[0_0_15px_rgba(255,107,0,0.4)] pointer-events-none opacity-0"></span>
+
         <div className="hidden md:flex items-center gap-6 flex-1">
-            <a href="#home" className="bg-jcrea-orange text-white px-5 py-2 rounded-full font-semibold text-sm shadow-[0_0_15px_rgba(255,107,0,0.4)]">Home</a>
-            <a href="#about" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">About</a>
-            <a href="#skills" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Skills</a>
+            {navLinks.slice(0, 3).map(deskLink)}
         </div>
 
         <div className="font-black text-2xl tracking-tighter text-white flex-shrink-0">
@@ -30,11 +158,10 @@ function App() {
         </div>
 
         <div className="hidden md:flex items-center gap-6 flex-1 justify-end">
-            <a href="#projects" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Projects</a>
-            <a href="#achievements" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Achievements</a>
-            <a href="#experience" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Experience</a>
-            <a href="#contact" className="text-gray-400 hover:text-white font-medium text-sm transition-colors">Contact</a>
+            {navLinks.slice(3).map(deskLink)}
         </div>
+
+        <MobileMenu links={navLinks} activeId={activeSection} />
       </nav>
 
       {/* HERO SECTION */}
@@ -42,14 +169,14 @@ function App() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-jcrea-orange/20 rounded-full blur-[130px] -z-10 pointer-events-none"></div>
 
         <div className="text-center z-10 max-w-4xl mx-auto" data-aos="zoom-in" data-aos-duration="1200">
-            <span className="inline-block text-xs md:text-sm font-mono text-gray-300 tracking-wider mb-6">
-                [ AI, Machine Learning &amp; Data Engineer ]
-            </span>
-            <h1 className="text-4xl md:text-7xl font-black tracking-tight mb-3 text-white">
+            <p className="text-xs md:text-sm text-gray-400 mb-6">
+                Informatics Engineering, Universitas Brawijaya
+            </p>
+            <h1 ref={heroNameRef} className="text-4xl md:text-7xl font-black tracking-tight mb-3 text-white">
                 Rusdiansyah <span className="text-jcrea-orange">Alief</span> Prasetya
             </h1>
             <p className="text-lg md:text-2xl text-gray-300 max-w-2xl mx-auto font-medium mb-8 leading-relaxed">
-                Building enterprise <span className="text-white font-bold">Hybrid RAG systems</span>, deep learning <span className="text-white font-bold">sequential recommenders</span>, and high-throughput data pipelines.
+                I build <span className="text-jcrea-orange font-bold">RAG systems</span> and research sequential recommendation at the Intelligent System Laboratory.
             </p>
         </div>
 
@@ -60,15 +187,57 @@ function App() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-max mx-auto">
+                <Magnet {...ctaMagnet} disabled={!finePointer}>
                 <a href="#projects" className="bg-jcrea-orange text-white px-8 py-3.5 rounded-full font-bold hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(255,107,0,0.4)] flex items-center gap-2 w-full sm:w-auto justify-center">
-                    Lihat Proyek Saya
+                    View My Projects
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
-                <a href="/docs/CV_Rusdiansyah_Alief_Prasetya_AI_ML.pdf" target="_blank" rel="noreferrer" className="border border-white/20 hover:border-white/50 text-white px-8 py-3.5 rounded-full font-bold hover:bg-white/5 transition-all duration-300 flex items-center gap-2 backdrop-blur-sm w-full sm:w-auto justify-center">
-                    Download CV ATS (PDF)
+                </Magnet>
+                <Magnet {...ctaMagnet} disabled={!finePointer}>
+                <a href="/docs/Rusdiansyah_Alief_Prasetya_CV.pdf" download="Rusdiansyah_Alief_Prasetya_CV.pdf" className="border border-white/20 hover:border-white/50 text-white px-8 py-3.5 rounded-full font-bold hover:bg-white/5 transition-all duration-300 flex items-center gap-2 backdrop-blur-sm w-full sm:w-auto justify-center">
+                    Download CV (PDF)
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                 </a>
+                </Magnet>
             </div>
+        </div>
+      </section>
+
+      {/* AI FOCUS */}
+      <section id="ai-focus" className="py-12 px-4 max-w-6xl mx-auto">
+        <p className="text-xs md:text-sm text-gray-400 text-center mb-6" data-aos="fade-up">AI Focus</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {aiFocus.map((item, idx) => (
+                <div key={idx} className="bg-jcrea-gray/40 backdrop-blur-sm rounded-3xl p-6 md:p-8 border border-white/5 hover:border-jcrea-orange/50 transition-colors shadow-xl flex flex-col"
+                    data-aos="fade-up" data-aos-delay={(idx + 1) * 100}>
+                    {aiVisuals[item.visual] && (() => {
+                        const Visual = aiVisuals[item.visual];
+                        return (
+                            <div className="h-28 md:h-36 lg:h-28 mb-5 rounded-2xl bg-black/20 border border-white/5 flex items-center justify-center px-3 md:px-2 lg:px-3">
+                                <Visual />
+                            </div>
+                        );
+                    })()}
+                    <h4 className="text-jcrea-orange font-bold text-xl mb-2">{item.title}</h4>
+                    <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-1">{item.text}</p>
+                    <div className="flex flex-wrap gap-x-4 gap-y-1">
+                        {item.links.map((link) => (
+                            <a key={link.href} href={link.href}
+                                onClick={(e) => {
+                                    const target = document.querySelector(link.href);
+                                    if (!target) return;
+                                    // Handle it here (not via Lenis anchors) so the card clears the fixed navbar.
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    scrollToElement(target);
+                                }}
+                                className="text-sm font-semibold text-white underline decoration-white/20 underline-offset-4 hover:text-jcrea-orange hover:decoration-jcrea-orange transition-colors">
+                                {link.label}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            ))}
         </div>
       </section>
 
@@ -76,42 +245,39 @@ function App() {
       <section id="about" className="py-24 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-16" data-aos="fade-up">
             <h3 className="text-3xl md:text-5xl font-bold mb-4">About <span className="text-jcrea-orange">Me</span></h3>
-            <p className="text-gray-400">Fondasi riset akademik dan rekayasa sistem data cerdas.</p>
+            <p className="text-gray-400">Informatics Engineering student at Universitas Brawijaya.</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
             <div className="md:col-span-7 bg-jcrea-gray/40 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-white/5 shadow-xl text-gray-300 leading-relaxed text-lg" data-aos="fade-right" data-aos-delay="100">
                 <p className="mb-6">
-                    Saya mahasiswa S1 Teknik Informatika di <strong className="text-white">Universitas Brawijaya</strong> yang berfokus pada perancangan arsitektur kecerdasan buatan, pemodelan deep learning, dan rekayasa data.
-                </p>
-                <p className="mb-6">
-                    Aktif sebagai <strong className="text-jcrea-orange">Research Intern di Laboratorium Komputasi Cerdas</strong> meneliti model rekomendasi sekuensial (<strong className="text-white">AAAI 2024 BSARec</strong>), berpengalaman mengembangkan <strong className="text-white">Hybrid Search RAG</strong> dan <strong className="text-white">Predictive Maintenance</strong> untuk Astra UD Trucks, serta membangun on-premise vector microservices berbasis <strong className="text-white">Golang dan ChromaDB</strong>.
+                    I'm a <strong className="text-white">dynamic learner</strong> with a passion for continuous learning and exploring the latest technological developments.
                 </p>
                 <p>
-                    Terbiasa mengelola siklus data end-to-end: dari data preprocessing, benchmarking multi-seed dengan tracking <strong className="text-jcrea-orange">Weights &amp; Biases</strong>, hingga otomatisasi cron ingestion pipeline menggunakan <strong className="text-white">GitHub Actions</strong> dan basis data relasional aman di <strong className="text-white">Supabase PostgreSQL (RLS)</strong>.
+                    I'm highly motivated by the power of <strong className="text-jcrea-orange">collaboration</strong> and enjoy driving teams to create new initiatives. For me, working together is not only about reaching targets, but also about discovering potential and creating unexpected positive impact.
                 </p>
             </div>
             
             <div className="md:col-span-5 space-y-6" data-aos="fade-left" data-aos-delay="300">
                 <div className="bg-gradient-to-br from-jcrea-gray/60 to-jcrea-dark p-6 rounded-3xl border border-white/10 shadow-lg relative overflow-hidden group hover:border-jcrea-orange/50 transition-colors">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-jcrea-orange/10 rounded-bl-full -mr-4 -mt-4 transition-transform duration-500 group-hover:scale-[2]"></div>
-                    <h4 className="text-jcrea-orange font-bold text-xl mb-1 relative z-10">Pendidikan</h4>
-                    <p className="text-white font-medium text-lg relative z-10">Universitas Brawijaya (FILKOM)</p>
-                    <p className="text-gray-400 text-sm relative z-10">S1 Teknik Informatika • Fokus AI &amp; Data</p>
+                    <h4 className="text-jcrea-orange font-bold text-xl mb-1 relative z-10">Education</h4>
+                    <p className="text-white font-medium text-lg relative z-10">Universitas Brawijaya</p>
+                    <p className="text-gray-400 text-sm relative z-10">Bachelor's in Informatics Engineering (S1) • August 2024 – Present</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-jcrea-gray/60 to-jcrea-dark p-6 rounded-3xl border border-white/10 shadow-lg relative overflow-hidden group hover:border-jcrea-orange/50 transition-colors">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-jcrea-orange/10 rounded-bl-full -mr-4 -mt-4 transition-transform duration-500 group-hover:scale-[2]"></div>
-                    <h4 className="text-jcrea-orange font-bold text-xl mb-1 relative z-10">Fokus Keahlian</h4>
-                    <p className="text-white font-medium text-lg relative z-10">AI / ML &amp; Data Engineering</p>
-                    <p className="text-gray-400 text-sm relative z-10">Hybrid RAG, Sequential Recommenders, Data Pipelines</p>
+                    <h4 className="text-jcrea-orange font-bold text-xl mb-1 relative z-10">Research Focus</h4>
+                    <p className="text-white font-medium text-lg relative z-10">NLP &amp; Sequential Recommendation</p>
+                    <p className="text-gray-400 text-sm relative z-10">Research Intern, Intelligent System Laboratory</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-jcrea-gray/60 to-jcrea-dark p-6 rounded-3xl border border-white/10 shadow-lg relative overflow-hidden group hover:border-jcrea-orange/50 transition-colors">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-jcrea-orange/10 rounded-bl-full -mr-4 -mt-4 transition-transform duration-500 group-hover:scale-[2]"></div>
-                    <h4 className="text-jcrea-orange font-bold text-xl mb-1 relative z-10">Riset &amp; Sistem</h4>
-                    <p className="text-white font-medium text-lg relative z-10">Lab Komputasi Cerdas &amp; Industry</p>
-                    <p className="text-gray-400 text-sm relative z-10">AAAI 2024 Audit, Golang Vector Serving, Docker</p>
+                    <h4 className="text-jcrea-orange font-bold text-xl mb-1 relative z-10">Experience</h4>
+                    <p className="text-white font-medium text-lg relative z-10">PT. Finnet Indonesia &amp; SAB Tour &amp; Travel</p>
+                    <p className="text-gray-400 text-sm relative z-10">Teaching Assistant, Systems Analysis and Design (APS)</p>
                 </div>
             </div>
         </div>
@@ -121,40 +287,22 @@ function App() {
       <section id="skills" className="py-24 px-4 max-w-6xl mx-auto bg-jcrea-gray/20 rounded-3xl">
         <div className="text-center mb-16" data-aos="fade-up">
             <h3 className="text-3xl md:text-5xl font-bold mb-4">Skills &amp; <span className="text-jcrea-orange">Technical Stacks</span></h3>
-            <p className="text-gray-400">Arsitektur keahlian terstruktur dalam Machine Learning, Generative AI, dan Data Engineering.</p>
+            <p className="text-gray-400">Programming, frameworks, systems design, AI &amp; security, and soft skills.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8" data-aos="fade-up" data-aos-delay="100">
-            {skillCategories.map((group, groupIdx) => (
-                <div key={groupIdx} className="bg-jcrea-gray/50 backdrop-blur-sm border border-white/10 hover:border-jcrea-orange/40 rounded-3xl p-8 transition-all duration-300 shadow-xl group hover:-translate-y-1">
-                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-                        <span className="w-3 h-3 rounded-full bg-jcrea-orange shadow-[0_0_10px_#FF6B00]"></span>
-                        <h4 className="text-xl font-bold text-white group-hover:text-jcrea-orange transition-colors">
-                            {group.category}
-                        </h4>
-                    </div>
-                    <div className="flex flex-wrap gap-2.5">
-                        {group.skills.map((skill, skillIdx) => (
-                            <span key={skillIdx} className="bg-jcrea-dark/80 text-gray-200 border border-white/10 group-hover:border-jcrea-orange/30 px-3.5 py-2 rounded-xl text-sm font-medium hover:bg-jcrea-orange hover:text-white transition-all cursor-default">
-                                {skill}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            ))}
-        </div>
+        <SkillsGrid />
       </section>
 
       {/* FEATURED PROJECTS */}
       <section id="projects" className="py-24 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-16" data-aos="fade-up">
             <h3 className="text-3xl md:text-5xl font-bold mb-4">Featured <span className="text-jcrea-orange">Projects</span></h3>
-            <p className="text-gray-400">Implementasi sistem kecerdasan buatan, reproduksi riset deep learning, dan arsitektur data produksi.</p>
+            <p className="text-gray-400">RAG systems, research reproduction, computer vision, and web platforms.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.length > 0 ? projects.map((item, index) => (
-                <div key={index} className="bg-jcrea-gray/40 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/5 hover:border-jcrea-orange/50 transition-all duration-500 group shadow-xl flex flex-col"
+                <div key={index} id={item.id} className="scroll-mt-28 bg-jcrea-gray/40 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/5 hover:border-jcrea-orange/50 transition-all duration-500 group shadow-xl flex flex-col"
                     data-aos="fade-up" data-aos-delay={(index + 1) * 100}>
                     <div className="h-56 bg-black overflow-hidden relative">
                         <img 
@@ -167,17 +315,12 @@ function App() {
                             alt={item.title} 
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-jcrea-dark via-transparent to-transparent opacity-70"></div>
-                        
-                        {item.highlight && (
-                            <div className="absolute top-4 left-4 z-10">
-                                <span className="bg-jcrea-orange/90 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                                    {item.highlight}
-                                </span>
-                            </div>
-                        )}
                     </div>
                     
                     <div className="p-7 flex-1 flex flex-col">
+                        {item.ai_label && (
+                            <span className="font-mono text-xs text-gray-400 mb-1">{item.ai_label}</span>
+                        )}
                         <span className="text-xs font-semibold text-jcrea-orange uppercase tracking-wider mb-1">
                             {item.category}
                         </span>
@@ -196,34 +339,38 @@ function App() {
                             </div>
                         )}
 
+                        {(item.link || item.github_link) && (
                         <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/10">
                             {item.link && item.link !== '#' && (
                                 <a href={item.link} target="_blank" rel="noreferrer" className="flex-1 bg-jcrea-orange/20 hover:bg-jcrea-orange text-jcrea-orange hover:text-white border border-jcrea-orange/50 text-center py-2 rounded-xl text-sm font-bold transition-all duration-300">
                                     Live Demo
                                 </a>
                             )}
+                            {item.github_link && (
                             <a
-                                href={item.github_link && item.github_link !== '#' ? item.github_link : 'https://github.com/RusdiansyahAlief19'}
+                                href={item.github_link}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="flex-1 bg-jcrea-gray hover:bg-white hover:text-black border border-white/20 text-center py-2 rounded-xl text-sm font-bold transition-all duration-300"
                             >
                                 GitHub Repo
                             </a>
+                            )}
                         </div>
+                        )}
                     </div>
                 </div>
             )) : (
-                <div className="col-span-full text-center text-gray-500">Belum ada proyek yang ditambahkan.</div>
+                <div className="col-span-full text-center text-gray-500">No projects added yet.</div>
             )}
         </div>
       </section>
 
-      {/* ACHIEVEMENTS / HONORS */}
+      {/* COMPETITIONS & ORGANIZATIONS */}
       <section id="achievements" className="py-24 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-16" data-aos="fade-up">
-            <h3 className="text-3xl md:text-5xl font-bold mb-4">Honors &amp; <span className="text-jcrea-orange">Achievements</span></h3>
-            <p className="text-gray-400">Prestasi dan rekognisi kompetisi inovasi berbasis data tingkat nasional.</p>
+            <h3 className="text-3xl md:text-5xl font-bold mb-4">Competitions &amp; <span className="text-jcrea-orange">Organizations</span></h3>
+            <p className="text-gray-400">Competitions and student organization roles.</p>
         </div>
 
         <div className="max-w-4xl mx-auto" data-aos="zoom-in" data-aos-delay="100">
@@ -237,7 +384,7 @@ function App() {
                                 <span className="bg-jcrea-orange text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow">
                                     🏆 National Finalist
                                 </span>
-                                <span className="text-gray-400 text-sm font-semibold">Tahun {item.year}</span>
+                                <span className="text-gray-400 text-sm font-semibold">Year {item.year}</span>
                                 {item.theme && (
                                     <span className="bg-white/10 text-gray-300 text-xs px-3 py-1 rounded-full">
                                         {item.theme}
@@ -254,7 +401,7 @@ function App() {
                             </p>
                             
                             <div className="text-xs text-gray-400 font-mono pt-2">
-                                Penyelenggara: <span className="text-gray-200">{item.organizer}</span> • No: <span className="text-gray-300">{item.certificate_no}</span>
+                                Organizer: <span className="text-gray-200">{item.organizer}</span> • No: <span className="text-gray-300">{item.certificate_no}</span>
                             </div>
                         </div>
 
@@ -265,11 +412,19 @@ function App() {
                                 rel="noreferrer" 
                                 className="inline-flex items-center gap-2 bg-jcrea-orange hover:bg-[#cc5500] text-white px-6 py-3.5 rounded-2xl font-bold transition-all shadow-[0_0_20px_rgba(255,107,0,0.3)] hover:scale-105"
                             >
-                                <span>Lihat Sertifikat PDF</span>
+                                <span>View Certificate (PDF)</span>
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </a>
                         </div>
                     </div>
+                </div>
+            ))}
+        </div>
+
+        <div className="max-w-4xl mx-auto mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {activities.map((item, idx) => (
+                <div key={idx} data-aos="fade-up" data-aos-delay={(idx + 1) * 100}>
+                    <EntryCard item={item} className="h-full" />
                 </div>
             ))}
         </div>
@@ -279,30 +434,14 @@ function App() {
       <section id="experience" className="py-24 px-4 max-w-4xl mx-auto bg-jcrea-gray/20 rounded-3xl">
         <div className="text-center mb-16" data-aos="fade-up">
             <h3 className="text-3xl md:text-5xl font-bold mb-4">Experience &amp; <span className="text-jcrea-orange">Education</span></h3>
-            <p className="text-gray-400">Jejak perjalanan riset akademik, rekayasa industri, dan pendidikan formal.</p>
+            <p className="text-gray-400">Research, industry, and teaching experience, followed by formal education.</p>
         </div>
 
-        <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-jcrea-orange/50 before:to-transparent">
-            
-            {experiences.length > 0 ? experiences.map((item, index) => (
-                <div key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active" data-aos="fade-up">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-jcrea-dark bg-jcrea-orange text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"></path></svg>
-                    </div>
-                    <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl bg-jcrea-gray/60 border border-white/5 hover:border-jcrea-orange/30 transition-all shadow-xl">
-                        <div className="flex items-center justify-between mb-2">
-                            <span className="text-jcrea-orange font-bold text-sm tracking-wide">{item.period || 'Past - Present'}</span>
-                            <span className="bg-black/30 text-xs px-2 py-1 rounded-md text-gray-400 uppercase tracking-wider">{item.type}</span>
-                        </div>
-                        <h4 className="text-xl font-bold text-white mb-1">{item.title}</h4>
-                        <h5 className="text-sm font-medium text-gray-400 mb-3">{item.organization}</h5>
-                        <p className="text-gray-300 text-sm leading-relaxed">{item.description}</p>
-                    </div>
-                </div>
-            )) : (
-                <div className="text-center text-gray-500 w-full">Belum ada pengalaman yang ditambahkan.</div>
-            )}
-        </div>
+        <h4 className="text-2xl font-bold text-white text-center mb-8" data-aos="fade-up">Experience</h4>
+        <Timeline items={experiences} />
+
+        <h4 className="text-2xl font-bold text-white text-center mt-16 mb-8" data-aos="fade-up">Education</h4>
+        <Timeline items={education} />
       </section>
 
       {/* CONTACT ME */}
@@ -314,7 +453,7 @@ function App() {
                 <div>
                     <h3 className="text-4xl md:text-5xl font-bold mb-6">Let's <span className="text-jcrea-orange">Connect!</span></h3>
                     <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                        Terbuka untuk peluang magang di bidang <span className="text-white font-semibold">AI / Machine Learning &amp; Data Engineering</span>, diskusi riset model sekuensial &amp; RAG, maupun kolaborasi pengembangan sistem.
+                        Open to internship opportunities in <span className="text-white font-semibold">AI / Machine Learning</span>, discussions on sequential recommendation &amp; RAG research, and collaboration on system development.
                     </p>
                     
                     <div className="space-y-4">
@@ -342,7 +481,7 @@ function App() {
                 <div className="bg-black/20 p-8 rounded-3xl border border-white/5">
                     <form action="#" method="POST" className="space-y-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-400 mb-1">Nama</label>
+                            <label className="block text-sm font-medium text-gray-400 mb-1">Name</label>
                             <input type="text" className="w-full bg-jcrea-gray/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-jcrea-orange transition-colors" placeholder="John Doe" />
                         </div>
                         <div>
@@ -350,11 +489,11 @@ function App() {
                             <input type="email" className="w-full bg-jcrea-gray/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-jcrea-orange transition-colors" placeholder="john@example.com" />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-400 mb-1">Pesan</label>
-                            <textarea rows="4" className="w-full bg-jcrea-gray/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-jcrea-orange transition-colors" placeholder="Tulis pesan Anda..."></textarea>
+                            <label className="block text-sm font-medium text-gray-400 mb-1">Message</label>
+                            <textarea rows="4" className="w-full bg-jcrea-gray/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-jcrea-orange transition-colors" placeholder="Write your message..."></textarea>
                         </div>
                         <a href="mailto:rusdiasputre@gmail.com?subject=Hello%20Alief%20-%20AI%20Engineering%20Opportunities" className="block w-full bg-jcrea-orange hover:bg-[#cc5500] text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-[0_0_15px_rgba(255,107,0,0.3)] text-center">
-                            Kirim Email
+                            Send Email
                         </a>
                     </form>
                 </div>

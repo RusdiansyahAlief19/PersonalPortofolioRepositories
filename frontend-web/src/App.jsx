@@ -9,6 +9,10 @@ import { useFinePointer } from './motion/useFinePointer';
 import Magnet from './components/Magnet';
 import MobileMenu from './components/MobileMenu';
 import ScrollProgress from './components/ScrollProgress';
+import RagDiagram from './components/ai/RagDiagram';
+
+// Small explanatory visual shown at the top of an AI Focus card (key = aiFocus[].visual).
+const aiVisuals = { rag: RagDiagram };
 import { useActiveSection } from './motion/useActiveSection';
 import { useNavPill } from './motion/useNavPill';
 
@@ -189,6 +193,14 @@ function App() {
             {aiFocus.map((item, idx) => (
                 <div key={idx} className="bg-jcrea-gray/40 backdrop-blur-sm rounded-3xl p-6 md:p-8 border border-white/5 hover:border-jcrea-orange/50 transition-colors shadow-xl flex flex-col"
                     data-aos="fade-up" data-aos-delay={(idx + 1) * 100}>
+                    {aiVisuals[item.visual] && (() => {
+                        const Visual = aiVisuals[item.visual];
+                        return (
+                            <div className="h-28 md:h-36 lg:h-28 mb-5 rounded-2xl bg-black/20 border border-white/5 flex items-center justify-center px-3">
+                                <Visual />
+                            </div>
+                        );
+                    })()}
                     <h4 className="text-jcrea-orange font-bold text-xl mb-2">{item.title}</h4>
                     <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-1">{item.text}</p>
                     <div className="flex flex-wrap gap-x-4 gap-y-1">

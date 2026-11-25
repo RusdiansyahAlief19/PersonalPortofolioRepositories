@@ -37,6 +37,7 @@ export const skills = [
 export const aiFocus = [
   {
     title: 'RAG Systems',
+    visual: 'rag',
     text: 'Hybrid RAG (FAISS + BM25 + RRF) for the Astra UD Trucks fleet intelligence platform, and a fully local, on-premise RAG with Ollama and ChromaDB.',
     links: [
       { label: 'Astra UD Trucks project', href: '#project-astra-ud-trucks' },
